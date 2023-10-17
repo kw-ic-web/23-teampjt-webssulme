@@ -25,12 +25,20 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+
+    # gradlew에 실행 권한 부여
+    - name: Executable to /gradlew
+      run: chmod +x ./gradlew
+
+    # 프로젝트 빌드
+    - name: Project Build
+      run: ./gradlew clean build -x test
         
     # 자바 Spring Boot 빌드
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-      with:
-        arguments: clean build
+    # - name: Build with Gradle
+    #   uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+    #   with:
+    #     arguments: clean build
 
     # Docker 이미지 빌드
     - name: Docker image build
