@@ -32,7 +32,7 @@ jobs:
 
     # 프로젝트 빌드
     - name: Project Build
-      run: ./gradlew clean build -x test
+      run: ./gradlew clean bootwar
         
     # 자바 Spring Boot 빌드
     # - name: Build with Gradle
