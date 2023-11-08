@@ -54,3 +54,11 @@ jobs:
     # 5. Docker Hub 이미지 푸시
     - name: docker Hub push
       run: docker push pswlove38/github-actions-demo
+
+    # 6. docker-compose up
+    - name: docker-compose up
+      run: |
+        sudo docker pull pswlove38/github-actions-demo
+        sudo docker pull pswlove38/change-nginx
+        docker-compose up -d
+        docker image prune -f
