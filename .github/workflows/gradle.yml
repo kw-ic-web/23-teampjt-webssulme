@@ -96,6 +96,7 @@ jobs:
     - name: docker Hub push
       run: docker push pswlove38/github-actions-demo
 
+    # 6. GCP에 SSH로 접속
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
@@ -103,13 +104,9 @@ jobs:
         username: pswlove38
         key: ${{ env.SSH_KEY }}
         port: 22
-
-    - name: run docker-compose
-      run: |
-        sudo docker pull pswlove38/github-actions-demo
-        sudo docker pull pswlove38/change-nginx
-        docker-compose up -d
-        docker image prune -f
-    # 6. docker-compose up
-    #- name: executing remote ssh commands using ssh key and docker-compose up
-
+        script: |
+          sudo docker rm -f $(docker ps -qa)
+          sudo docker pull pswlove38/github-actions-demo
+          sudo docker pull pswlove38/change-nginx
+          docker-compose up -d
+          docker image prune -f
