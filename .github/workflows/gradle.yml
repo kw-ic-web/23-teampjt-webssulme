@@ -55,61 +55,15 @@ jobs:
     - name: docker Hub push
       run: docker push pswlove38/github-actions-demo
 
+    - name: Set up Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    - name: 'Use gcloud CLI'
+      run: |
+        sudo docker pull pswlove38/github-actions-demo
+        sudo docker pull pswlove38/change-nginx
+        docker-compose up -d
+        docker image prune -f
     # 6. docker-compose up
-    - name: executing remote ssh commands using ssh key and docker-compose up
-      uses: pswlove38/ssh-action@master
-      with:
-        host: 35.185.207.149
-        username: pswlove38
-        SSH_KEY: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn\
-                NhAAAAAwEAAQAAAgEAvZNiA4WO4DOWPFO+4yHY3/p+0+zalhumKy8Dw8PG9oW3SbBQfSxm\
-                fURlN48J6LIZQDBZgjdKPVl4nhEFYZbTYj16fZ4dznp+iqUzkTD7ZXQEhTLAm957JufzKu\
-                yebCsCBafe+8uePY/Ftn5XKjVDxyAdpRdB0aEYmVoy77DAaTbzYgEKciqOWH6zGqM2rvad\
-                AeVR/xl8ahksfWEje8+BKlJoc7+1gL+pM/zlrwSLiwo/CXHOtzAimgZZTIAm0GpC4v6PkQ\
-                UHutdAWUSdVIh5UT/LkjyHU1pHbJuK3K/c9pXlBEb308OSCndKqA/FqMGPobXAMfWYP/BP\
-                MvoNJfObnJ52HfRekEJHd7ekg9qAHDzNMNnHC0bsbzJkzPlrQw0UYN48YWTemqkwa3Lbs+\
-                IVlPtryxxmuk6K5i/+Z0BI7zsyX6iaAwUT4P4iGKuKbC7uchoNXTsHV/8uLL8pz1Z4Ed0g\
-                8y1ZUfoNPOqVm12nFkcid4QhpQybCKm4Z8q509AJw/p7+hLBcw5knG9cJkVKasiMkPw0dm\
-                rmfReS3r1t/NH+kGHZ9qF0WVhrAiFL3+QHwkTuq0364PRRWWIu6GbZLjdiP/wL8LgRV9dr\
-                ADCuTW4T4oo9l6b2opTK44XuY1bE9gg2o+isT++a0ggt/+p5VnGSNRVi6NJRBlMB56sxLl\
-                8AAAdIfiuyHX4rsh0AAAAHc3NoLXJzYQAAAgEAvZNiA4WO4DOWPFO+4yHY3/p+0+zalhum\
-                Ky8Dw8PG9oW3SbBQfSxmfURlN48J6LIZQDBZgjdKPVl4nhEFYZbTYj16fZ4dznp+iqUzkT\
-                D7ZXQEhTLAm957JufzKuyebCsCBafe+8uePY/Ftn5XKjVDxyAdpRdB0aEYmVoy77DAaTbz\
-                YgEKciqOWH6zGqM2rvadAeVR/xl8ahksfWEje8+BKlJoc7+1gL+pM/zlrwSLiwo/CXHOtz\
-                AimgZZTIAm0GpC4v6PkQUHutdAWUSdVIh5UT/LkjyHU1pHbJuK3K/c9pXlBEb308OSCndK\
-                qA/FqMGPobXAMfWYP/BPMvoNJfObnJ52HfRekEJHd7ekg9qAHDzNMNnHC0bsbzJkzPlrQw\
-                0UYN48YWTemqkwa3Lbs+IVlPtryxxmuk6K5i/+Z0BI7zsyX6iaAwUT4P4iGKuKbC7uchoN\
-                XTsHV/8uLL8pz1Z4Ed0g8y1ZUfoNPOqVm12nFkcid4QhpQybCKm4Z8q509AJw/p7+hLBcw\
-                5knG9cJkVKasiMkPw0dmrmfReS3r1t/NH+kGHZ9qF0WVhrAiFL3+QHwkTuq0364PRRWWIu\
-                6GbZLjdiP/wL8LgRV9drADCuTW4T4oo9l6b2opTK44XuY1bE9gg2o+isT++a0ggt/+p5Vn\
-                GSNRVi6NJRBlMB56sxLl8AAAADAQABAAACABUBRwtn2YBbBurxRoXJIswSZ8oYhNG8B4ni\
-                YDLpNtrqzvexuwFbkZGQqfxhc3IehbC4irpkYOvyRWySKzv4Z7yLXk6b3eaaaPn4uwF74W\
-                cI11Vg3bmHibKyYZ2gcR9AFq3Ev267zXE5xGjnj8Xj9/oQw2ge7xKInH6lYV5wgalGxunV\
-                frBOqc4BX9v0OKNjPNtQaujujHv/BRBxWmql/8RONDebBsPYuKlDfLmLMeD6hiiIPSTMBx\
-                F04aEZ0/Mkyvt2xDaHzab0obMiaKJMqtCHVomB/maMaryMcXLpY3zI+AKk0GHc2goh1JpR\
-                gQ+lPsJmroB6m19+Q3A9B4bsepHLWEYp5/aLcX9eBrIgQbjPjVR6nn/qHMWytRoqvVycAc\
-                YH0dfjINsiZ8R71nWeK2srUpug0Es91fibjwL9AQdo4BDmYfI3/riuVLdeW/k+U24eayKR\
-                ClPzDpP/t2Fms5edj3GeAyDSUWijmgTEYvNSxNhhpZMRd25UR0q03hrvZl2cWfobBPKoE2\
-                u+AwRvnX8EajzXhfJDf/4jwOGLhliEp1paEJp+4NJs1cGEs5BRB7fcJVC6Yz+mX8wCg2cf\
-                y4muTjZhECRXSiA5JgaPl1kEej16FY6sW7lyRV1r6OJp9pp0RXXK/RsBJKS+dBAZec+TSc\
-                uBDl8olMeubr9oLxaxAAABAD04ioBA7R0LfoOcn9EQPZ4ic8TNKNj3ZGJIf5t2I4cjdHog\
-                y4qwLIQ6sMQatKsbptdeSjqxKzK6QMA0JnrWONqdWjT1RXoJV6Mwzxs5hcsHpzx1w7CHrh\
-                nVz0s61mmCJo9z8YWIFyHzB4biDvGGWowlGPuYEP03CoEOjflmDRblgT/oRJAp8x+kUt82\
-                7ylAqYoamCm5sb3FwrBzOsRPc/0CEZvoL6RBLejqhOsSeZu1q53sxSiWZFIDDDlu6oHyne\
-                PQtyP5G0/M5mwUDwR1In0WwKReOgNcYpNXSXYEg9GAjmx21eyaFOmy+v3yXld6LVkrvSTi\
-                MXknXcBMpPj2CSEAAAEBAPYqIxb9a3QNrfOkRoHDWt36yga9K8ZfXKfLPis5SiK3NLOgC/\
-                jku4eib0avWGaPpG9ZoLM9UNOfI0BUhrIMFobVr0/aTl6XsrE5ADRHnYtlKLn/1U6ookkq\
-                euMfoqquA+CknDbGefw+6OMN4VMx9AC0X1DPtJvHpKEBfoclH5oUuHb3xRaDolKLkpRvBr\
-                kxv4U4YPWxK6WQ/oY7t7cAU+FJ9eyqkWPBH/pwG53s3Ppy1AFSvuWKUckewQqu0n+JCzM3\
-                o6/NouY7dU0m5vE+evCk+PI+xndR47t377eLudJV+W5YtL6xtO7EV1J9RvD/SVb+Z4Pc+q\
-                PPJjysM18C5HEAAAEBAMUmbwWQpp2bv84v7vpLzDyaPYIK0uCK0qS6+8PLTJQwStWiY+CJ\
-                Rv+/xKkm9wnBgfaQlvrD6aAbW2ARb3V4iQhtVjz5Skow7JEUHdbpanzxtlEUEjhh2Qo8fN\
-                gYcsoJrX1SJsogcu+/vAMQn9CdcJ7OlKGY86E656qrRxsLgCzQ0hgg3Iy61sdxm8ILjLU5\
-                GTB+d1qDlOUo4ACVxXq8jsyTAXTaD1ykbJYUw8V86BAYkxnYEmw2dWk6y7tYDJ/qx/os8s\
-                1utjFbx+DKCllDjnSBOo/MKkJnCh4GIE4i+zUKO4RY3Til+jv9UOmFaR8zwIcYVOpZ31da\
-                C9Sa/CGBZ88AAAATcHN3bG92ZTM4QGdtYWlsLmNvbQ==
-        script: |
-          sudo docker pull pswlove38/github-actions-demo
-          sudo docker pull pswlove38/change-nginx
-          docker-compose up -d
-          docker image prune -f
+    #- name: executing remote ssh commands using ssh key and docker-compose up
+
