@@ -7,6 +7,47 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  SSH_KEY: > 
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    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
+    -----END OPENSSH PRIVATE KEY-----
+
 permissions:
   contents: read
 
@@ -55,10 +96,15 @@ jobs:
     - name: docker Hub push
       run: docker push pswlove38/github-actions-demo
 
-    - name: Set up Cloud SDK
-      uses: 'google-github-actions/setup-gcloud@v1'
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: 35.185.207.149
+        username: pswlove38
+        key: ${{ env.SSH_KEY }}
+        port: 22
 
-    - name: 'Use gcloud CLI'
+    - name: run docker-compose
       run: |
         sudo docker pull pswlove38/github-actions-demo
         sudo docker pull pswlove38/change-nginx
