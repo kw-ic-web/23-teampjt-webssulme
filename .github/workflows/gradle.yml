@@ -100,7 +100,7 @@ jobs:
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
-        host: 35.185.207.149
+        host: 35.212.196.164
         username: pswlove38
         key: ${{ env.SSH_KEY }}
         port: 22
