@@ -1,0 +1,11 @@
+.navbarMenu {
+    margin : 10px;
+    text-decoration:none;
+    color: #ffcc00;
+}
+
+.nav__menu {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2rem;
+  }
