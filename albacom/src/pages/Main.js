@@ -1,5 +1,13 @@
+import React from "react";
+import Category from "../components/Category";
+// import PostList from "../components/PostList";
+
 const Main = () => {
-    return <div>Home 페이지입니다</div>;
-}
+  return (
+    <React.Fragment>
+        <Category />
+    </React.Fragment>
+  );
+};
 
 export default Main;
