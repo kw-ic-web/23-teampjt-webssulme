@@ -9,10 +9,6 @@ public class Service {
     @Autowired
     private Mapper mapper;
 
-    public Integer showIndex(){
-        return mapper.showIndex();
-    }
-
     public String getLoginIdList(String nickname){
         return mapper.getLoginIdList(nickname);
     }

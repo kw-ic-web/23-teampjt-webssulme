@@ -19,17 +19,11 @@ public class Controller {
 
     @GetMapping("/test")
     public String test(Model model) throws Exception{
-        testModel testModel = new testModel();
-        testModel.setN(service.showIndex());
-        System.out.print(testModel + "test");
         return "test";
     }
 
     @GetMapping("/test2")
     public String test2(Model model) throws Exception{
-        testModel testModel = new testModel();
-        testModel.setN(service.showIndex());
-        System.out.print(testModel + "test2");
         return "test2";
     }
 
