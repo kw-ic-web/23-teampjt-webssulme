@@ -7,4 +7,15 @@
         from test;
     </select>
 
+    <select id="getLoginIdList" resultType="String">
+        select nickname
+        from user
+        where nickname=#{nickname}
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO user (nickname, pw)
+        VALUES (#{nickname}, #{pw});
+    </insert>
+
 </mapper>

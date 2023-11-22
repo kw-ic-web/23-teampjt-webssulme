@@ -3,8 +3,6 @@ package com.example.web.service;
 import com.example.web.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
-
 @org.springframework.stereotype.Service
 public class Service {
 
@@ -13,5 +11,15 @@ public class Service {
 
     public Integer showIndex(){
         return mapper.showIndex();
+    }
+
+    public String getLoginIdList(String nickname){
+        return mapper.getLoginIdList(nickname);
+    }
+
+    public boolean insertUser(String nickname, String pw){
+        if (mapper.insertUser(nickname, pw))
+            return true;
+        return false;
     }
 }
