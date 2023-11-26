@@ -3,10 +3,19 @@
 
 <mapper namespace="com.example.web.mapper.Mapper">
 
+    <!-- 로그인 -->
+    <select id="loginCheck" resultType="com.example.web.model.loginModel">
+        select nickname, pw
+        from user
+        where nickname=#{nickname} and pw=#{pw};
+    </select>
+
+
+    <!-- 회원가입 -->
     <select id="getLoginIdList" resultType="String">
         select nickname
         from user
-        where nickname=#{nickname}
+        where nickname=#{nickname};
     </select>
 
     <insert id="insertUser">
@@ -14,4 +23,20 @@
         VALUES (#{nickname}, #{pw});
     </insert>
 
+    <!-- 자유게시판 -->
+    <select id="getFreeBoardList" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board;
+    </select>
+
+    <insert id="insertFreeBoardNewContent">
+        insert into free_board (user_nickname, title, content)
+        values (#{user_nickname}, #{title}, #{content});
+    </insert>
+
+    <select id="getMyFreeBoardContentList" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board
+        where user_nickname=#{user_nickname};
+    </select>
 </mapper>
