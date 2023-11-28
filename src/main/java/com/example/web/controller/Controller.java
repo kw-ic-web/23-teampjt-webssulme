@@ -1,13 +1,16 @@
 package com.example.web.controller;
 
 import com.example.web.model.freeBoardModel;
-import com.example.web.model.loginModel;
+import com.example.web.model.userModel;
 import com.example.web.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -28,20 +31,23 @@ public class Controller {
 
     // 로그인
     @PostMapping("/login/check/{nickname}/{pw}")
-    public boolean loginCheck(@PathVariable("nickname") String nickname, @PathVariable("pw") String pw) throws Exception{
+    public List<userModel> loginCheck(@PathVariable("nickname") String nickname, @PathVariable("pw") String pw) throws Exception{
         try {
-            List<loginModel> userInfo = service.loginCheck(nickname, pw);
+            List<userModel> userInfo = service.loginCheck(nickname, pw);
             System.out.println(userInfo);
+
+//            Map<String, Object> data = new HashMap<>();
+//            data.put("nickname", userInfo);
             
             // 해당 아이디 정보가 있으면
             if (userInfo.size() != 0){
-                return true;
+                return userInfo;
             }else {
-                return false;
+                return null;
             }
         } catch (Exception e){
             System.out.println(e);
-            return false;
+            return null;
         }
     }
 
@@ -129,7 +135,7 @@ public class Controller {
             return false;
         }
     }
-    
+
     // 자유게시판에 자신이 작성한 글의 리스트를 가져오기 (view.html)
     @GetMapping("/freeboard/contentlist/{nickname}")
     public List<freeBoardModel> getMyFreeBoardContentList(@PathVariable("nickname") String user_nickname) throws Exception{
@@ -142,6 +148,27 @@ public class Controller {
             System.out.println("자유게시판에 등록된 자신의 글을 가져오는데 실패하였습니다.");
             System.out.println(e);
             return null;
+        }
+    }
+
+    // 작성한 자유게시판 글을 수정 (edit.html)
+    @PutMapping("/freeboard/putcontent/{id}/{title}/{content}")
+    public boolean putFreeBoardContent(@PathVariable("id") int id,
+                                       @PathVariable("title") String title,
+                                       @PathVariable("content") String content) throws Exception{
+        try {
+            boolean result = service.putFreeBoardContent(id, title, content);
+            if (result){
+                System.out.println("글을 수정하였습니다.");
+                return true;
+            } else {
+                System.out.println("글을 수정하는데 실패하였습니다.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("글을 수정하는데 실패하였습니다.");
+            System.out.println(e);
+            return false;
         }
     }
 }

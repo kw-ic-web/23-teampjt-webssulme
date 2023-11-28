@@ -4,8 +4,8 @@
 <mapper namespace="com.example.web.mapper.Mapper">
 
     <!-- 로그인 -->
-    <select id="loginCheck" resultType="com.example.web.model.loginModel">
-        select nickname, pw
+    <select id="loginCheck" resultType="com.example.web.model.userModel">
+        select *
         from user
         where nickname=#{nickname} and pw=#{pw};
     </select>
@@ -19,8 +19,8 @@
     </select>
 
     <insert id="insertUser">
-        INSERT INTO user (nickname, pw)
-        VALUES (#{nickname}, #{pw});
+        INSERT INTO user (nickname, pw, updated_at)
+        VALUES (#{nickname}, #{pw}, #{updated_at});
     </insert>
 
     <!-- 자유게시판 -->
@@ -39,4 +39,10 @@
         from free_board
         where user_nickname=#{user_nickname};
     </select>
+
+    <update id="putFreeBoardContent">
+        update free_board
+        set title = #{title}, content = #{content}, updated_at = #{updated_at}
+        where id = #{id};
+    </update>
 </mapper>
