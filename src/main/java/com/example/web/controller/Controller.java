@@ -1,6 +1,7 @@
 package com.example.web.controller;
 
 import com.example.web.model.freeBoardModel;
+import com.example.web.model.storeModel;
 import com.example.web.model.userModel;
 import com.example.web.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +170,21 @@ public class Controller {
             System.out.println("글을 수정하는데 실패하였습니다.");
             System.out.println(e);
             return false;
+        }
+    }
+
+    // 메인페이지
+    // 메인페이지에서 카테고리 클릭시, 해당 카테고리 음식점 목록
+    @GetMapping("/category/{category}")
+    public List<storeModel> getCategoryStoreList(@PathVariable("category") String category) throws Exception{
+        try {
+            List<storeModel> storeList = service.getCategoryStoreList(category);
+
+            return storeList;
+        } catch (Exception e){
+            System.out.println(category  + " 카테고리 가게 리스트를 가져오는데 실패하였습니다.");
+            System.out.println(e);
+            return null;
         }
     }
 }
