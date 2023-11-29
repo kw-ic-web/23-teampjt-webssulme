@@ -137,20 +137,26 @@ public class Controller {
         }
     }
 
-    // 자유게시판에 자신이 작성한 글의 리스트를 가져오기 (view.html)
-    @GetMapping("/freeboard/contentlist/{nickname}")
-    public List<freeBoardModel> getMyFreeBoardContentList(@PathVariable("nickname") String user_nickname) throws Exception{
-        try {
-            List<freeBoardModel> myFreeBoardContentList = service.getMyFreeBoardContentList(user_nickname);
-            System.out.println("자유게시판에 등록된 자신의 글을 가져오는데 성공하였습니다.");
-            return myFreeBoardContentList;
-            
-        } catch (Exception e){
-            System.out.println("자유게시판에 등록된 자신의 글을 가져오는데 실패하였습니다.");
+    // 자유게시판에 작성한 글 다시 보여주기
+    @GetMapping("/freeboard/complete/{id}")
+    public freeBoardModel getCompleteContent(@PathVariable("id") int id) throws Exception{
+        try{
+            freeBoardModel completeContent = service.getCompleteContent(id);
+
+            if (completeContent.getContent() != null) {
+                System.out.println("방금 작성한 새글을 불러오는데 성공하였습니다.");
+                return completeContent;
+            } else {
+                System.out.println("방금 작성한 새글을 불러오는데 실패하였습니다.");
+                return null;
+            }
+        }catch (Exception e){
+            System.out.println("방금 작성한 새글을 불러오는데 실패하였습니다.");
             System.out.println(e);
             return null;
         }
     }
+
 
     // 작성한 자유게시판 글을 수정 (edit.html)
     @PutMapping("/freeboard/putcontent/{id}/{title}/{content}")
@@ -173,6 +179,8 @@ public class Controller {
         }
     }
 
+
+
     // 메인페이지
     // 메인페이지에서 카테고리 클릭시, 해당 카테고리 음식점 목록
     @GetMapping("/category/{category}")
@@ -183,6 +191,22 @@ public class Controller {
             return storeList;
         } catch (Exception e){
             System.out.println(category  + " 카테고리 가게 리스트를 가져오는데 실패하였습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 마이페이지
+    // 마이페이지에 자신이 작성한 자유게시판 글의 리스트를 가져오기
+    @GetMapping("/mypage/contentlist/{nickname}")
+    public List<freeBoardModel> getMyFreeBoardContentList(@PathVariable("nickname") String user_nickname) throws Exception{
+        try {
+            List<freeBoardModel> myFreeBoardContentList = service.getMyFreeBoardContentList(user_nickname);
+            System.out.println("마이페이지에 등록된 자신의 글을 가져오는데 성공하였습니다.");
+            return myFreeBoardContentList;
+
+        } catch (Exception e){
+            System.out.println("마이페이지에 등록된 자신의 글을 가져오는데 실패하였습니다.");
             System.out.println(e);
             return null;
         }

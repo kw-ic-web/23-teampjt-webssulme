@@ -46,6 +46,11 @@ public class Service {
         return false;
     }
 
+    // 방금 작성한 자유게시판 글을 불러옴
+    public freeBoardModel getCompleteContent(int id){
+        return  mapper.getCompleteContent(id);
+    }
+
     // 자유게시판에 등록된 자신의 글을 가져옴
     public List<freeBoardModel> getMyFreeBoardContentList(String user_nickname){
         return mapper.getMyFreeBoardContentList(user_nickname);

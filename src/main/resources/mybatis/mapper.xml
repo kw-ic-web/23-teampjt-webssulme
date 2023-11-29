@@ -34,6 +34,12 @@
         values (#{user_nickname}, #{title}, #{content});
     </insert>
 
+    <select id="getCompleteContent" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board
+        where id = #{id};
+    </select>
+
     <select id="getMyFreeBoardContentList" resultType="com.example.web.model.freeBoardModel">
         select *
         from free_board

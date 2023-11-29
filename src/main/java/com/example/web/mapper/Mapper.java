@@ -28,6 +28,8 @@ public interface Mapper {
     // 자유게시판 새글 등록하기
     public boolean insertFreeBoardNewContent(String user_nickname, String title, String content);
 
+    public freeBoardModel getCompleteContent(int id);
+
     // 자유게시판에 등록된 내 글을 가져옴
     public List<freeBoardModel> getMyFreeBoardContentList(String user_nickname);
 
