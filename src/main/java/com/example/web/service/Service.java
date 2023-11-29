@@ -2,6 +2,7 @@ package com.example.web.service;
 
 import com.example.web.mapper.Mapper;
 import com.example.web.model.freeBoardModel;
+import com.example.web.model.storeModel;
 import com.example.web.model.userModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -54,5 +55,12 @@ public class Service {
     public boolean putFreeBoardContent(int id, String title, String content) throws Exception{
         Timestamp updated_at = new Timestamp(new Date().getTime());
         return mapper.putFreeBoardContent(id, title, content, updated_at);
+    }
+
+    // 메인페이지
+    // 메인페이지 카테고리 클릭시, 해당 카테고리 가게 목록 리스트
+    public List<storeModel> getCategoryStoreList(String category) throws Exception{
+        List<storeModel> storeList = mapper.getCategoryStoreList(category);
+        return storeList;
     }
 }

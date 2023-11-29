@@ -1,6 +1,7 @@
 package com.example.web.mapper;
 
 import com.example.web.model.freeBoardModel;
+import com.example.web.model.storeModel;
 import com.example.web.model.userModel;
 
 import java.sql.Timestamp;
@@ -32,4 +33,8 @@ public interface Mapper {
 
     // 자유게시판에 등록된 글 수정
     public boolean putFreeBoardContent(int id, String title, String content, Timestamp updated_at);
+
+    // 메인페이지
+    // 메인페이지 카테고리 클릭시, 해당 카테고리 가게 목록
+    public List<storeModel> getCategoryStoreList(String category);
 }

@@ -45,4 +45,12 @@
         set title = #{title}, content = #{content}, updated_at = #{updated_at}
         where id = #{id};
     </update>
+
+    <!-- 메인페이지 -->
+    <select id="getCategoryStoreList" resultType="com.example.web.model.storeModel">
+        select *
+        from store
+        where category = #{category};
+    </select>
+
 </mapper>
