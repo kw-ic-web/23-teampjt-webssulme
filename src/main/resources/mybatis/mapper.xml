@@ -40,9 +40,17 @@
         where id = #{id};
     </select>
 
+
+    <!-- 마이페이지 -->
     <select id="getMyFreeBoardContentList" resultType="com.example.web.model.freeBoardModel">
         select *
         from free_board
+        where user_nickname=#{user_nickname};
+    </select>
+
+    <select id="getMypageCommentList" resultType="com.example.web.model.storeCommentModel">
+        select *
+        from store_comment
         where user_nickname=#{user_nickname};
     </select>
 
@@ -57,6 +65,12 @@
         select *
         from store
         where category = #{category};
+    </select>
+
+    <select id="getStoreCommentList" resultType="com.example.web.model.storeCommentModel">
+        select *
+        from store_comment
+        where store_id = #{store_id};
     </select>
 
 </mapper>
