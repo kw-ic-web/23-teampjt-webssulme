@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 // import EditFreeTalk from "./pages/EditFreeTalk";
 // import EditPost from "./pages/EditPost";
-// import FreeBoardPage from "./pages/FreeBoardPage";
+import FreeBoardPage from "./pages/FreeBoardPage";
 // import CreateFreeTalk from "./pages/CreateFreeTalk";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
@@ -24,7 +24,7 @@ import SignUp  from "./pages/SignUp";
 // import CreatePost from "./pages/CreatePost";
 
 // import StoreDetail  from "./pages/StoreDetail";
-// import StoreList from "./pages/StoreList";
+import PostListPage from "./pages/PostListPage";
 
 
 
@@ -48,6 +48,8 @@ function App() {
               <Route path= "/" element={<Main />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/postlistpage" element={<PostListPage/>} />
+              <Route path="/freeboardpage" element={<FreeBoardPage/>} />
             </Routes>
         
     </div>

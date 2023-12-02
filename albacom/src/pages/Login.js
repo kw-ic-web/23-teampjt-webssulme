@@ -138,6 +138,7 @@ const Question = styled.div`
   flex-direction: row;
   margin-left: 19rem;
   justify-content: flex-end;
+  
   @media all and (max-width: 1024px) {
     width: auto;
     margin: 0;

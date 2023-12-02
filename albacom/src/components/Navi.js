@@ -11,7 +11,7 @@ const Navi = () => {
             </Link>
 
             <Link to="/PostListPage" style={{ marginTop: "10px", marginLeft: "10px" }}><div className="white_font"> 후기 목록 </div></Link>
-            <Link to="/FreeBoardPage" style={{ marginTop: "10px", marginLeft: "10px" }}><div className="white_font"> 자유게시판 </div></Link>
+            <Link to="/freeboardpage" style={{ marginTop: "10px", marginLeft: "10px" }}><div className="white_font"> 자유게시판 </div></Link>
             <Link to="/MyPage" style={{ marginTop: "10px", marginLeft: "10px" }}><div className="white_font"> 마이페이지 </div></Link>
             </ul>
   </div>

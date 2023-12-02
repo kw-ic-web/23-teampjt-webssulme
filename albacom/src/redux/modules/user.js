@@ -25,19 +25,15 @@ const initialState = {
 };
 
 // 회원가입
-const signUpDB = (id, nick, phone, email, name, pwd, navigate) => {
+const signUpDB = (id, pwd, navigate) => {
   return function (dispatch, getState) {
     axios({
       method: "post",
-      url: `${config.api}/join`, // 바꿔야 될 것들 (상천이한테 받아서)
+      url: `${config.api}/join`,  // 바꿔야 될 것들 (상천이한테 받아서)
       // 회원가입 시 입력 데이터 보내기(보내기만 하면 끝)
       data: {
-        user_id:id,
-        user_nick_name : nick,
-        user_name : name,
+        user_id : id,
         user_passwd : pwd,
-        user_phone:phone,
-        user_email:email,
       },
     })
       .then(() => {

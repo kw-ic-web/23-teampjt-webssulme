@@ -46,6 +46,7 @@ const setPostDB = (text = null, page = 1) => {
         }
         dispatch(setPost(post_list));
       });
+      
       // 카테고리별로 보여주기
     } else {
       axios({

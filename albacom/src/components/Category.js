@@ -81,6 +81,10 @@ const Category = () => {
         </Div>
       </Wrap>
       
+
+
+
+
       <Wrap>
         <Div>
         <div style={{ marginBottom: "2.5rem" }}></div>
@@ -144,6 +148,7 @@ const Category = () => {
   );
 };
 
+
 export default Category;
 
 const Text = styled.div`
@@ -179,6 +184,7 @@ const Div = styled.div`
     justify-content: center;
   }
 `;
+
 const ButtonBox = styled.div`
   flex-direction: column;
   text-align: center;
@@ -262,6 +268,7 @@ const IconWithText = styled.div`
   align-items: center;
   text-align: center;
 `;
+
 
 const Icon = styled.div`
   display: flex;
