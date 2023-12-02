@@ -34,9 +34,23 @@
         values (#{user_nickname}, #{title}, #{content});
     </insert>
 
+    <select id="getCompleteContent" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board
+        where id = #{id};
+    </select>
+
+
+    <!-- 마이페이지 -->
     <select id="getMyFreeBoardContentList" resultType="com.example.web.model.freeBoardModel">
         select *
         from free_board
+        where user_nickname=#{user_nickname};
+    </select>
+
+    <select id="getMypageCommentList" resultType="com.example.web.model.storeCommentModel">
+        select *
+        from store_comment
         where user_nickname=#{user_nickname};
     </select>
 
@@ -45,4 +59,18 @@
         set title = #{title}, content = #{content}, updated_at = #{updated_at}
         where id = #{id};
     </update>
+
+    <!-- 메인페이지 -->
+    <select id="getCategoryStoreList" resultType="com.example.web.model.storeModel">
+        select *
+        from store
+        where category = #{category};
+    </select>
+
+    <select id="getStoreCommentList" resultType="com.example.web.model.storeCommentModel">
+        select *
+        from store_comment
+        where store_id = #{store_id};
+    </select>
+
 </mapper>

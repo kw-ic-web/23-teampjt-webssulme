@@ -2,6 +2,7 @@ package com.example.web.service;
 
 import com.example.web.mapper.Mapper;
 import com.example.web.model.freeBoardModel;
+import com.example.web.model.storeCommentModel;
 import com.example.web.model.storeModel;
 import com.example.web.model.userModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,16 @@ public class Service {
         return  mapper.getCompleteContent(id);
     }
 
+
+    // 마이페이지
     // 자유게시판에 등록된 자신의 글을 가져옴
     public List<freeBoardModel> getMyFreeBoardContentList(String user_nickname){
         return mapper.getMyFreeBoardContentList(user_nickname);
+    }
+
+    // 자신이 작성한 후기글 가져오기
+    public List<storeCommentModel> getMypageCommentList(String user_nickname){
+        return mapper.getMypageCommentList(user_nickname);
     }
 
     // 작성한 자유게시판 글 수정
@@ -67,5 +75,10 @@ public class Service {
     public List<storeModel> getCategoryStoreList(String category) throws Exception{
         List<storeModel> storeList = mapper.getCategoryStoreList(category);
         return storeList;
+    }
+
+    // 해당 가게 후기 가져오기
+    public List<storeCommentModel> getStoreCommentList(String store_id) throws Exception{
+        return mapper.getStoreCommentList(store_id);
     }
 }

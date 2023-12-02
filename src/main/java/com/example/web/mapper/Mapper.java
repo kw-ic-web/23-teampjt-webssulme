@@ -1,6 +1,7 @@
 package com.example.web.mapper;
 
 import com.example.web.model.freeBoardModel;
+import com.example.web.model.storeCommentModel;
 import com.example.web.model.storeModel;
 import com.example.web.model.userModel;
 
@@ -30,8 +31,11 @@ public interface Mapper {
 
     public freeBoardModel getCompleteContent(int id);
 
+    // 마이페이지
     // 자유게시판에 등록된 내 글을 가져옴
     public List<freeBoardModel> getMyFreeBoardContentList(String user_nickname);
+
+    public List<storeCommentModel> getMypageCommentList(String user_nickname);
 
     // 자유게시판에 등록된 글 수정
     public boolean putFreeBoardContent(int id, String title, String content, Timestamp updated_at);
@@ -39,4 +43,7 @@ public interface Mapper {
     // 메인페이지
     // 메인페이지 카테고리 클릭시, 해당 카테고리 가게 목록
     public List<storeModel> getCategoryStoreList(String category);
+
+    // 해당 가게의 후기 목록을 가져옴
+    public List<storeCommentModel> getStoreCommentList(String store_id);
 }

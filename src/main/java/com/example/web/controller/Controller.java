@@ -1,6 +1,7 @@
 package com.example.web.controller;
 
 import com.example.web.model.freeBoardModel;
+import com.example.web.model.storeCommentModel;
 import com.example.web.model.storeModel;
 import com.example.web.model.userModel;
 import com.example.web.service.Service;
@@ -196,6 +197,20 @@ public class Controller {
         }
     }
 
+    // 가게 후기 목록 가져오기
+    @GetMapping("/store/comment/{store_id}")
+    public List<storeCommentModel> getStoreCommentList(@PathVariable("store_id") String store_id) throws Exception{
+        try {
+            List<storeCommentModel> storeCommentList = service.getStoreCommentList(store_id);
+
+            return  storeCommentList;
+        } catch (Exception e) {
+            System.out.println(store_id + "의 가게 후기를 가져오는 과정에서 오류가 발생했습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
     // 마이페이지
     // 마이페이지에 자신이 작성한 자유게시판 글의 리스트를 가져오기
     @GetMapping("/mypage/contentlist/{nickname}")
@@ -207,6 +222,20 @@ public class Controller {
 
         } catch (Exception e){
             System.out.println("마이페이지에 등록된 자신의 글을 가져오는데 실패하였습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 자신이 작성한 가게 후기 가져오기
+    @GetMapping("/mypage/commentlist/{user_nickname}")
+    public List<storeCommentModel> getMypageCommentList(@PathVariable("user_nickname") String user_nickname) throws Exception{
+        try {
+            List<storeCommentModel> mypageCommentList = service.getMypageCommentList(user_nickname);
+
+            return  mypageCommentList;
+        } catch (Exception e){
+            System.out.println("등록한 자신의 댓글을 가져오는 과정에서 오류가 발생하였습니다.");
             System.out.println(e);
             return null;
         }
