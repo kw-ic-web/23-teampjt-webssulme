@@ -43,29 +43,6 @@
                     <div class="title">제목</div>
                     <div class="date">작성일</div>
                 </div>
-
-
-                <!-- 여기서 부턴 데이터 값 받아와서 뿌려야 함  -->
-                <!-- <div id = 'di'>
-                    <div id = 'li' class="title"><a href="view.html"></a></div>
-                    <div id = 'date' class="date"></div>
-                </div>
-                <div id = 'di'>
-                    <div  id = 'li'  class="title"><a href="view.html"></a></div>
-                    <div id = 'date' class="date"></div>
-                </div>
-                <div id = 'di'>
-                    <div  id = 'li'  class="title"><a href="view.html"></a></div>
-                    <div id = 'date' class="date"></div>
-                </div>
-                <div id = 'di'>
-                    <div  id = 'li'  class="title"><a href="view.html"></a></div>
-                    <div id = 'date' class="date"></div>
-                </div>
-                <div id = 'di'>
-                    <div  id = 'li'  class="title"><a href="view.html"></a></div>
-                    <div id = 'date' class="date"></div>
-                </div> -->
             </div>
             
 
@@ -87,14 +64,11 @@
 
       // 로그인이 되면
       if (localStorage.getItem('is_logined')) {
-        // 로그아웃 버튼, 누구누구님만 보임
         document.getElementById("loginBtn").style.display = "none";
         document.getElementById("joinBtn").style.display = "none";
-         
-        // localStorage에서 id 값을 가져오기
+
           const id = localStorage.getItem("id");
 
-          // p 요소에 nickname 값을 넣기
           const nameElement = document.getElementById("name");
           if (nameElement) {
               nameElement.textContent = id + '님' || "No nickname"; // 값이 없을 경우에 대비한 기본 값 설정
@@ -102,8 +76,6 @@
       } 
       
       else {
-        // false라면 
-        // 로그인, 회원가입 버튼이 보임
         document.getElementById("logoutBtn").style.display = "none";
         document.getElementById("name").style.display = "none";
       }
@@ -134,30 +106,73 @@ if (queryParams.has('data')) {
 
     // 이제 dataArray를 사용하여 페이지에 필요한 작업 수행
     if (dataArray.length > 0) {
-          const container = document.getElementById('list');
+        const itemsPerPage = 5;
+        let currentPage = 1;
 
-          container.innerHTML = '<div class="top"><div class="title">제목</div><div class="date">작성일</div></div>';
+        function displayItems(startIndex, endIndex) {
+            const container = document.getElementById('list');
+            container.innerHTML = '<div class="top"><div class="title">제목</div><div class="date">작성일</div></div>';
+
+            for (let i = startIndex; i < endIndex; i++) {
+                const item = dataArray[i];
+
+                if (!item) {
+                    break;
+                }
+
+                const itemContainer = document.createElement('div');
+                const date = new Date(item.created_at);
+                const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+
+                itemContainer.innerHTML = `
+            <div class="title"><a href="free_boardView.html?idx=${item.id}">${item.title}</a></div>
+            <div class="date">${formattedDate}</div>
+            <div class="idx" style="display: none;">${item.id}</div>
+        `;
+
+                container.appendChild(itemContainer);
+            }
+        }
+
+        function updatePaginationButtons() {
+            //const prevButton = document.getElementById('prev');
+            // const nextButton = document.getElementById('prev');
+            const prevButton = document.querySelector('.bt.prev');
+            const nextButton = document.querySelector('.bt.next');
+
+            prevButton.style.display = currentPage > 1 ? 'inline-block' : 'none';
+            nextButton.style.display = currentPage < Math.ceil(dataArray.length / itemsPerPage) ? 'inline-block' : 'none';
+        }
+
+        function showPage(pageNumber) {
+            const startIndex = (pageNumber - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            displayItems(startIndex, endIndex);
+            updatePaginationButtons();
+        }
+
+        document.querySelector('.bt.prev').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        document.querySelector('.bt.next').addEventListener('click', () => {
+            const totalPages = Math.ceil(dataArray.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+// Initial display of the first page
+        showPage(currentPage);
+    }
 
 
-          dataArray.forEach(item => {
-          const itemContainer = document.createElement('div');
-          // itemContainer.className = 'item';
-          
-          const date = new Date(item.created_at);
-          const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
-  
-        
-          itemContainer.innerHTML = `
-          <div class="title"><a href="free_boardView.html?idx=${item.id}">${item.title}</a></div>
-          <div class="date">${formattedDate}</div>
-          <div class="idx" style="display: none;">${item.id}</div>
-          `;
-  
-               container.appendChild(itemContainer);
-         });
-}
-        
- else if (dataArray.length === 0) {
+    else if (dataArray.length === 0) {
     // 'data' 매개변수가 없는 경우
     document.getElementById("list").style.display = "none";
     document.getElementById("bt").style.display = "none";
@@ -177,14 +192,6 @@ function show() {
   const numElement = titleElement.parentElement.querySelector('num');
 
   console.log(numElement);
-    // // .num-link 클래스를 찾았는지 확인
-    // if (numElement) {
-    //     const numValue = numElement.innerText;
-    //     console.log(numValue);
-    //     // 이하 추가 작업 수행...
-    // } else {
-    //     console.error('.num-link element not found');
-    // }
 
 }
 

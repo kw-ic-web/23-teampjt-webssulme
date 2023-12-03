@@ -121,7 +121,9 @@ a {
     margin-right: 300px;
 }
 
-
+.bt.next:first-child {
+    float: none;
+}
 .button-wrapper {
     text-align: center;
   }
