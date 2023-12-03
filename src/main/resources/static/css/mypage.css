@@ -1,0 +1,117 @@
+body {
+  margin-top: 180px;
+}
+
+
+.mypage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 32rem;
+    margin: 0px auto;
+    margin-top: 6.25rem;
+    border: 2px solid #f9ebff;
+    border-radius: 20px;
+    padding: 50px 50px 50px 50px;
+    background-color: #f4f4f4;
+  }
+  
+  
+  
+  @media all and (max-width: 375px) {
+    .signup {
+      width: auto;
+      margin: 1rem;
+    }
+    .h1 {
+      font-size: 1.5rem;
+    }
+  }
+  .centered-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .p {
+    font-size: 20px;
+    color: #000000;
+    margin: 0px auto;
+    margin-bottom: 5px;
+    margin-left: 50px;
+    margin-top: 10px;
+  }
+  
+  @media all and (max-width: 414px) {
+    .p {
+      margin-left: 0;
+      font-size: 1rem;
+    }
+  }
+  
+  @media all and (max-width: 375px) {
+    .p {
+      margin-left: 0;
+      font-size: 1rem;
+    }
+  }
+  
+  .in {
+    width: 25rem;
+    height: 40px;
+    margin: 0px auto;
+    padding-left: 5px;
+  }
+  
+  
+  @media all and (max-width: 414px) {
+    .in {
+      width: 100%;
+    }
+  }
+  
+  
+  @media all and (max-width: 375px) {
+    .in {
+      width: 100%;
+    }
+  }
+  
+  
+  .btn {
+    width: 12.5rem;
+    height: 3rem;
+    /* margin: 30px 0 30px auto; */
+    background-color: #ffcc00;
+    border: 0px solid #e6ccef;
+    border-radius: 5px;
+    font-size: 1rem;
+    font: inherit;
+}
+.h1 {
+  display: flex;
+  justify-content: center;
+  margin: 0px auto;
+  margin-bottom: 30px;
+}
+
+
+  .h2 {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+  }
+  
+  .myprofile {
+    text-align: center; /* 컨테이너 내에서 가운데 정렬, 필요에 따라 조정 */
+}
+
+.h2, .btn {
+    display: inline-block;
+    vertical-align: middle; /* 필요 시 수직 정렬 */
+    margin: 20px; 
+    margin-left: 90px;
+}
+
+
