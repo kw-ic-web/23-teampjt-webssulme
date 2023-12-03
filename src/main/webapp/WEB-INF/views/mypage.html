@@ -95,17 +95,17 @@
     const id = localStorage.getItem("id");
 
     try {
-        axios.get(`http://35.212.196.164/mypage/contentlist/${id}`)
+        axios.get(`http://35.212.196.164/mypage/commentlist/${id}`)
             .then(res => {
-      
                     const dataArray = res.data;
+
 
                     // 데이터를 URL 매개변수로 전달하여 myfreepost.html로 이동
                     const queryParams = new URLSearchParams();
                     queryParams.append('data', JSON.stringify(dataArray));
 
                     // URL에 쿼리 매개변수 추가하여 이동
-                    window.location.href = `myfreepost.html?${queryParams.toString()}`;
+                    window.location.href = `mypost.html?${queryParams.toString()}`;
                 });
     } catch (error) {
         console.error('오류 발생:', error);
