@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.web.mapper.Mapper">
+
+    <!-- 로그인 -->
+    <select id="loginCheck" resultType="com.example.web.model.userModel">
+        select *
+        from user
+        where nickname=#{nickname} and pw=#{pw};
+    </select>
+
+
+    <!-- 회원가입 -->
+    <select id="getLoginIdList" resultType="String">
+        select nickname
+        from user
+        where nickname=#{nickname};
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO user (nickname, pw, updated_at)
+        VALUES (#{nickname}, #{pw}, #{updated_at});
+    </insert>
+
+    <!-- 자유게시판 -->
+    <select id="getFreeBoardList" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board;
+    </select>
+
+    <insert id="insertFreeBoardNewContent">
+        insert into free_board (user_nickname, title, content)
+        values (#{user_nickname}, #{title}, #{content});
+    </insert>
+
+    <select id="getCompleteContent" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board
+        where id = #{id};
+    </select>
+
+
+    <!-- 마이페이지 -->
+    <select id="getMyFreeBoardContentList" resultType="com.example.web.model.freeBoardModel">
+        select *
+        from free_board
+        where user_nickname=#{user_nickname};
+    </select>
+
+    <select id="getMypageCommentList" resultType="com.example.web.model.storeCommentModel">
+        select *
+        from store_comment
+        where user_nickname=#{user_nickname};
+    </select>
+
+    <update id="putFreeBoardContent">
+        update free_board
+        set title = #{title}, content = #{content}, updated_at = #{updated_at}
+        where id = #{id};
+    </update>
+
+    <!-- 메인페이지 -->
+    <select id="getCategoryStoreList" resultType="com.example.web.model.storeModel">
+        select *
+        from store
+        where category = #{category};
+    </select>
+
+    <select id="getStoreCommentList" resultType="com.example.web.model.storeCommentModel">
+        select *
+        from store_comment
+        where store_id = #{store_id};
+    </select>
+
+</mapper>

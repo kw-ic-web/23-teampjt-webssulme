@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  web:
+    container_name: web
+    image: pswlove38/github-actions-demo
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+
+# 80포트로 접근시, 8080으로 reverse proxy 설정한 nginx
+  nginx:
+    container_name: nginx
+    image: pswlove38/change-nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
