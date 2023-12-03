@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>메인 페이지 </title>
 
-  <link rel = 'stylesheet' href = "../css/header.css">
-  <link rel = 'stylesheet' href = "../css/index.css">
-  <link rel = 'stylesheet' href = "../css/main.css">
+  <link rel = 'stylesheet' href = "/static/css/header.css">
+  <link rel = 'stylesheet' href = "/static/css/index.css">
+  <link rel = 'stylesheet' href = "/static/css/main.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 
 <body>
   <div id = 'head' class="header">
-    <img src="../img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='main.html'">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='main.html'">
       
 
     <div class="button-container" id="buttonContainer">
@@ -29,8 +29,8 @@
   <div class="nav__bar">
     <ul class="nav__menu">
       <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-      <li><a href="../postlistpage.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
-      <li><a href="../freeboardpage.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
+      <li><a href="free_boardList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+      <li><a href="free_boardList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
       <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
     </ul>
   </div>
@@ -41,35 +41,35 @@
     <div class = "divv" style="margin-bottom: 2.5rem;">
       <div class="box">
         <div class="icon-with-text">
-          <img src="../img/convenience.png" alt="편의점" class = "icon" width="200px" height="65px" onclick="CategoryClick('편의점')">
+          <img src="/img/convenience.png" alt="편의점" class = "icon" width="200px" height="65px" onclick="CategoryClick('편의점')">
           <div class="text">편의점</div>
         </div>
       </div>
     
       <div class="box">
         <div class="icon-with-text">
-          <img src="../img/cinema.png" alt="영화관" class = "icon" width="200px" height="65px" onclick="CategoryClick('영화관')">
+          <img src="/img/cinema.png" alt="영화관" class = "icon" width="200px" height="65px" onclick="CategoryClick('영화관')">
           <div class="text">영화관</div>
         </div>
       </div>
     
       <div class="box">
         <div class="icon-with-text">
-          <img src="../img/beer.png" alt="술집" class = "icon" width="200px" height="65px" onclick="CategoryClick('술집')">
+          <img src="/img/beer.png" alt="술집" class = "icon" width="200px" height="65px" onclick="CategoryClick('술집')">
           <div class="text">술집</div>
         </div>
       </div>
     
       <div class="box">
         <div class="icon-with-text">
-          <img src="../img/park.png" alt="놀이공원" class = "icon" width="200px" height="65px" onclick="CategoryClick('놀이공원')">
+          <img src="/img/park.png" alt="놀이공원" class = "icon" width="200px" height="65px" onclick="CategoryClick('놀이공원')">
           <div class="text">놀이공원</div>
         </div>
       </div>
     
       <div class="box">
         <div class="icon-with-text">
-          <img src="../img/game.png" alt="피시방" class = "icon" width="200px" height="65px" onclick="CategoryClick('피시방')">
+          <img src="/img/game.png" alt="피시방" class = "icon" width="200px" height="65px" onclick="CategoryClick('피시방')">
           <div class="text">피시방</div>
         </div>
       </div>
@@ -81,35 +81,35 @@
     <div class = "divv" style="margin-bottom: 2.5rem;">
     <div class="box">
       <div class="icon-with-text">
-        <img src="../img/cafe.png" alt="카페" class = "icon" width="200px" height="65px" onclick="CategoryClick('카페')">
+        <img src="/img/cafe.png" alt="카페" class = "icon" width="200px" height="65px" onclick="CategoryClick('카페')">
         <div class="text">카페</div>
       </div>
     </div>
   
     <div class="box">
       <div class="icon-with-text">
-        <img src="../img/food.png" alt="음식점" class = "icon" width="200px" height="65px" onclick="CategoryClick('음식점')">
+        <img src="/img/food.png" alt="음식점" class = "icon" width="200px" height="65px" onclick="CategoryClick('음식점')">
         <div class="text">음식점</div>
       </div>
     </div>
   
     <div class="box">
       <div class="icon-with-text">
-        <img src="..//img/beauty.png" alt="뷰티" class = "icon" width="200px" height="65px" onclick="CategoryClick('뷰티')">
+        <img src="/img/beauty.png" alt="뷰티" class = "icon" width="200px" height="65px" onclick="CategoryClick('뷰티')">
         <div class="text">뷰티</div>
       </div>
     </div>
   
     <div class="box">
       <div class="icon-with-text">
-        <img src="../img/fastfood.png" alt="패스트푸드점" class = "icon" width="200px" height="65px" onclick="CategoryClick('패스트푸드점')">
+        <img src="/img/fastfood.png" alt="패스트푸드점" class = "icon" width="200px" height="65px" onclick="CategoryClick('패스트푸드점')">
         <div class="text">패스트푸드점</div>
       </div>
     </div>
   
     <div class="box">
       <div class="icon-with-text">
-        <img src="../img/oneday.png" alt="일일알바" class = "icon" width="200px" height="65px" onclick="CategoryClick('일일알바')">
+        <img src="/img/oneday.png" alt="일일알바" class = "icon" width="200px" height="65px" onclick="CategoryClick('일일알바')">
         <div class="text">일일알바</div>
       </div>
     </div>

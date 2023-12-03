@@ -3,50 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>헤더 </title>
-        <link rel = 'stylesheet' href = "css/header.css">
-        <link rel = 'stylesheet' href = "../css/index.css">
-       
+        <title>자유게시판 </title>
+        <link rel = 'stylesheet' href = "/static/css/header.css">
+        <link rel = 'stylesheet' href = "/static/css/index.css">
+
       </head>
-      
-      <body>
-        <div id = 'head' class="header">
-          <div class="logo" onclick="location.href='/login'"></div>
-          <div class="button-container">
-              <!-- Add login and signup buttons -->
-            <button class="button" style="margin: 7px; margin-right: 15px; " id="loginBtn" onclick="location.href='/login'">로그인</button>
-            <button class="button" style="margin: 7px; margin-right: 15px; " id="signupBtn" onclick="location.href='/signup'">회원가입</button>
-            <div class="nickname" id="nicknameDiv"></div>
-            <button class="button" style="margin: 7px; margin-right: 15px; display: none;" id="logoutBtn" onclick="logout()">로그아웃</button>
-                    
-          </div>
-        </div>
-      
-        <div class="nav__bar">
-          <ul class="nav__menu">
-            <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="/PostListPage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
-            <li><a href="free_boardList.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
-            <li><a href="/MyPage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
-          </ul>
-        </div>
-      </body>     
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항</title>
-    <link rel="stylesheet" href="css/css.css">
-</head>
-<style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-    * {
-    margin: 0px;
-    font-family: "Do Hyeon";
-
-    }
-</style>
 <body>
+<div id = 'head' class="header">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='main.html'">
+    <div class="button-container" id="buttonContainer">
+        <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
+        <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login.html'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join.html'">
+    </div>
+
+
+    <div class="nav__bar">
+        <ul class="nav__menu">
+            <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a href="postlistpage.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="freeboardpage.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
+            <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
+        </ul>
+    </div>
+</div>
+
+
     <div class="board_wrap">
         <div class="board_title">
             <strong>자유게시판</strong>
@@ -91,7 +75,43 @@
 
 <script>
   //import axios from 'axios';
+  // 로그인이 되면
+  if (localStorage.getItem('is_logined')) {
+      // 로그아웃 버튼, 누구누구님만 보임
+      document.getElementById("loginBtn").style.display = "none";
+      document.getElementById("joinBtn").style.display = "none";
 
+      // localStorage에서 id 값을 가져오기
+      const id = localStorage.getItem("id");
+
+      // p 요소에 nickname 값을 넣기
+      const nameElement = document.getElementById("name");
+      const nameElement2 = document.getElementById("name1");
+      if (nameElement) {
+          nameElement.textContent = id + '님' || "No nickname"; // 값이 없을 경우에 대비한 기본 값 설정
+      }
+      if (nameElement2) {
+          nameElement2.textContent = id + '님' || "No nickname"; // 값이 없을 경우에 대비한 기본 값 설정
+      }
+  }
+
+  else {
+      // false라면
+      // 로그인, 회원가입 버튼이 보임
+      document.getElementById("logoutBtn").style.display = "none";
+      document.getElementById("name").style.display = "none";
+  }
+
+
+
+  function my() {
+      if (!localStorage.getItem('is_logined')) {
+          alert('로그인 후 이용가능합니다!')
+      }
+      else{
+          window.location.href = 'mypage.html';
+      }
+  }
    // 페이지 로드 시 실행되는 함수
   window.onload = async function () {
     // 서버로부터 자유게시판 목록을 가져오는 요청
