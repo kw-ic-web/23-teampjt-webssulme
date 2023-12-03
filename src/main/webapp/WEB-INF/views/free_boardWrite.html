@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="../../../../../views/css/css.css">
+    <link rel="stylesheet" href="../../../../../views/css/header.css">
+</head>
+<body>
+    <div id = 'head' class="header">
+      <div class="logo" onclick="location.href='/login'"></div>
+      <div class="button-container">
+        <!-- Conditionally render buttons based on login status -->
+        <!-- For example, you can use server-side templating or JavaScript to determine login status -->
+        <!-- Replace the following buttons with your server-side logic -->
+        <div class="nickname">
+          <div class="username">웹썰미</div>님
+        </div>
+        <button class="button" style="margin: 7px; margin-right: 15px;" onclick=" " location.href='/write'>새 글 작성</button>
+        <button class="button" style="margin: 7px; margin-right: 15px;" onclick="logout()">로그아웃</button>
+        <!-- Or render login/signup buttons -->
+        <!--
+          <button class="button" onclick="location.href='/login'">로그인</button>
+          <button class="button" onclick="location.href='/signup'">회원가입</button>
+        -->
+      </div>
+    </div>
+</body>   
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+    * {
+    margin: 0px;
+    font-family: "Do Hyeon";
+
+    }
+</style>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>자유게시판</strong>
+            <p>여러 정보들을 공유해주세요.</p>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+            <form id="writeFrm">                   
+                <div class="title">   
+                    <dl>
+                      <dt>제목</dt>
+                      <dd><input type="text" name = "subject" placeholder="제목 입력"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>아이디</dt>
+                        <dd><input type="text" name = "id" placeholder="글쓴이 입력"></dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea name="content" placeholder="내용 입력"></textarea>
+                </div>
+                <div class="idx" style="display: none;">${boardItem.id}</div>
+            </div>
+            <div class="bt_wrap">
+                <a href ="#" id="registrationBtn">등록</a>
+                <!--input type="submit" value="등록">-->
+
+                <a href="free_boardList.html">취소</a>
+            </form>      
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module"></script>
+<script>
+
+
+  const registrationBtn = document.getElementById("registrationBtn");
+
+  registrationBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+  const subject = document.querySelector('input[name="subject"]').value;
+  const id = document.querySelector('input[name="id"]').value;
+  const content = document.querySelector('textarea[name="content"]').value;
+
+  // 각 필드를 개별적으로 확인
+  if (!subject || !id || !content) {
+    alert("제목, 아이디, 내용을 모두 입력해주세요!");
+    return;
+  }
+
+  try {
+    const response = await axios.post(`http://35.212.196.164/freeboard/insertnewcontent/${id}/${subject}/${content}`);
+
+    console.log(response.data);
+
+    // 응답 데이터를 확인하여 성공 또는 실패 처리
+    if (response.data === true ) {
+      console.log("새글 등록 성공!");
+      // 성공 시 리다이렉트하거나 기타 작업 수행 가능
+
+      // 성공 시 리다이렉트하거나 기타 작업 수행 가능
+      window.location.href = 'free_boardList.html';
+        
+    } else {
+      console.log('새글 등록 실패!');
+      // 실패 시 처리, 오류 메시지 표시 등
+    }
+  } catch (error) {
+    console.error("POST 요청 중 오류 발생:", error);
+    // 오류 처리, 오류 메시지 표시 등
+  }
+});
+
+
+</script>

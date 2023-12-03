@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>헤더 </title>
+        <link rel = 'stylesheet' href = "../../../../../views/css/header.css">
+        <link rel = 'stylesheet' href = "../../../../../views/css/css.css">
+       
+      </head>
+      
+      <body>
+        <div id = 'head' class="header">
+          <div class="logo" onclick="location.href='/login'"></div>
+          <div class="button-container">
+              <!-- Add login and signup buttons -->
+            <button class="button" style="margin: 7px; margin-right: 15px; " id="loginBtn" onclick="location.href='/login'">로그인</button>
+            <button class="button" style="margin: 7px; margin-right: 15px; " id="signupBtn" onclick="location.href='/signup'">회원가입</button>
+            <div class="nickname" id="nicknameDiv"></div>
+            <button class="button" style="margin: 7px; margin-right: 15px; display: none;" id="logoutBtn" onclick="logout()">로그아웃</button>
+                    
+          </div>
+        </div>
+      
+        <div class="nav__bar">
+          <ul class="nav__menu">
+            <li><a style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a style="margin-top: 10px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
+            <li><a style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
+          </ul>
+        </div>
+      </body> 
+      <body>
+        <div class="category">
+            <ul class="store__menu">
+              <li><a style="margin-top: 40px; margin-left: 30px;"> 카페 </a></li>
+              <li><a style="margin-top: 40px; margin-left: 30px;" > 술집 </a></li>
+              <li><a style="margin-top: 40px; margin-left: 30px;"> 놀이공원 </a></li>
+              <li><a style="margin-top: 40px; margin-left: 30px;" > 피시방 </a></li>
+              <li><a style="margin-top: 40px; margin-left: 30px;" > 영화관 </a></li>
+            </ul>
+          </div>
+      </body>
+      <body>
+        <div class="category2">
+            <ul class="store__menu2">
+              <li><a style="margin-top: 10px; margin-left: 30px;"> 패스트푸드점 </a></li>
+              <li><a style="margin-top: 10px; margin-left: 30px;" > 음식점 </a></li>
+              <li><a style="margin-top: 10px; margin-left: 30px;"> 편의점 </a></li>
+              <li><a style="margin-top: 10px; margin-left: 30px;" > 뷰티 </a></li>
+              <li><a style="margin-top: 10px; margin-left: 30px;" > 일일알바 </a></li>
+            </ul>
+          </div>
+      </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알바후기 게시판</title>
+    <link rel="stylesheet" href="../../../../../views/css/css2.css">
+</head>
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+    * {
+    margin: 0px;
+    font-family: "Do Hyeon";
+
+    }
+</style>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>알바 후기 게시판</strong>
+            <p>알바생 여러분들 마음껏 후기를 보시고 작성해주세요.</p>
+        </div>
+        <div class="board_list_wrap">
+            <div class="board_list" id ="boardList">
+                <div class="top">
+                    <div class="num">번호</div>  <!-- 아마 id가 들어가면됌.-->
+                    <div class="cate">카테고리</div>
+                    <div class="title">제목</div>  <!--title-->
+                    <div class="writer">글쓴이</div> <!--user_nickname-->
+                    <div class="date">작성일</div> <!--createdAt-->
+                </div>
+                <div>
+                    <div class="num">5</div>
+                    <div class="cate">카페</div>
+                    <div class="title"><a href="free_boardView.html">글 제목이 들어갑니다.</a></div>
+                    <div class="writer">김이름</div>
+                    <div class="date">2021.1.15</div>
+                </div>
+                <div>
+                    <div class="num">4</div>
+                    <div class="cate">카페</div>
+                    <div class="title"><a href="free_boardView.html">글 제목이 들어갑니다.</a></div>
+                    <div class="writer">김이름</div>
+                    <div class="date">2021.1.15</div>
+                </div>
+                <div>
+                    <div class="num">3</div>
+                    <div class="cate">카페</div>
+                    <div class="title"><a href="free_boardView.html">글 제목이 들어갑니다.</a></div>
+                    <div class="writer">김이름</div>
+                    <div class="date">2021.1.15</div>
+                </div>
+                <div>
+                    <div class="num">2</div>
+                    <div class="cate">카페</div>
+                    <div class="title"><a href="free_boardView.html">글 제목이 들어갑니다.</a></div>
+                    <div class="writer">김이름</div>
+                    <div class="date">2021.1.15</div>
+                </div>
+                <div>
+                    <div class="num">1</div>
+                    <div class="cate">카페</div>
+                    <div class="title"><a href="free_boardView.html">글 제목이 들어갑니다.</a></div>
+                    <div class="writer">김이름</div>
+                    <div class="date">2021.1.15</div>
+                </div>
+            </div>
+            <div class="board_page">
+                <a href="#" class="bt first"></a>
+                <a href="#" class="bt prev"></a>
+                <a href="#" class="num on">1</a>
+                <a href="#" class="num">2</a>
+                <a href="#" class="num">3</a>
+                <a href="#" class="num">4</a>
+                <a href="#" class="num">5</a>
+                <a href="#" class="bt next">></a>
+                <a href="#" class="bt last">>></a>
+            </div>
+            <div class="bt_wrap">
+                <a href="../../../../../views/storeWrite.html" class="on">글쓰기</a>
+                <!--<a href="#">수정</a>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
