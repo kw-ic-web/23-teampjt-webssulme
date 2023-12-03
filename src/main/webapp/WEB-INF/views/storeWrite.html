@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
-    <link rel="stylesheet" href="css/css.css">
-    <link rel="stylesheet" href="css/header.css">
-
+    <link rel="stylesheet" href="../../../../../views/css/css.css">
+    <link rel="stylesheet" href="../../../../../views/css/header.css">
 </head>
-
 <body>
     <div id = 'head' class="header">
       <div class="logo" onclick="location.href='/login'"></div>
@@ -41,12 +39,13 @@
 <body>
     <div class="board_wrap">
         <div class="board_title">
-            <strong>알바 후기 게시판(수정)</strong>
-            <p>작성한 후기를 확인해주세요.</p>
+            <strong>알바후기 게시판</strong>
+            <p>알바생 여러분들 후기 작성해주세요.</p>
         </div>
         <div class="board_write_wrap">
             <div class="board_write">
-                <div class="title">
+            <form id="writeFrm">                   
+                <div class="title">   
                     <dl>
                         <dt>제목</dt>
                         <dd><input type="text" name = "subject" placeholder="제목 입력"></dd>
@@ -55,57 +54,84 @@
                 <div class="info">
                     <dl>
                         <dt>아이디</dt>
-                        <dd><input type="text" name = "id" placeholder="아이디 입력"></dd>
+                        <dd><input type="text" name = "id" placeholder="글쓴이 입력"></dd>
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea name = "content" placeholder="내용 입력"></textarea>
+                    <textarea name="content" placeholder="내용 입력"></textarea>
                 </div>
             </div>
             <div class="bt_wrap">
-                <a href="#" id="editbtn" class="on">수정</a>
+                <!--a href ="#" id="registrationBtn">등록</a>-->
+                <a href="storeView.html">등록</a>
+                <!--input type="submit" value="등록">-->
+
                 <a href="store_List.html">취소</a>
+            </form>      
             </div>
         </div>
     </div>
 </body>
 </html>
 
-<script>
-    const Editbtn = document.getElementById("editbtn");
 
-    Editbtn.addEventListener("click", (e) => {
-    e.preventDefault();
+<script>
+
+
+   
+
+    /*
+    const registrationBtn = document.getElementById("registrationBtn");
+
+    registrationBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
 
     const subject = document.querySelector('input[name="subject"]').value;
     const id = document.querySelector('input[name="id"]').value;
     const content = document.querySelector('textarea[name="content"]').value;
 
-    // Do something with the collected data, e.g., log it
-    console.log("Title:", subject);
-    console.log("Author:", id);
-    console.log("Content:", content);
-
-    // Check each field individually
-    if (!subject) {
-      alert("수정하실 제목을 입력해주세요!");
-      return;
+    // 각 필드를 개별적으로 확인
+    if (!subject || !id || !content) {
+        alert("제목, 아이디, 내용을 모두 입력해주세요!");
+        return;
     }
 
-    if (!id) {
-      alert("수정하실 아이디를 입력해주세요 !");
-      return;
+    var sql = {
+        params :{
+        title : subject,
+        user_nickname : id,
+        content : content,
+        }
     }
 
-    if (!content) {
-      alert("수정하실 내용을 입력해주세요 !");
-      return;
+    try {
+        const response = await axios.post('/api/customers/freeboard/insertnewcontent', sql);
+
+        console.log(response.data);
+
+        // 응답 데이터를 확인하여 성공 또는 실패 처리
+        if (response.data.data === 1) {
+        console.log("새글 등록 성공!");
+        // 성공 시 리다이렉트하거나 기타 작업 수행 가능
+        window.location.href = "/free_boardList.html";
+        } else {
+        console.log('새글 등록 실패!');
+        // 실패 시 처리, 오류 메시지 표시 등
+        }
+    } catch (error) {
+        console.error("POST 요청 중 오류 발생:", error);
+        // 오류 처리, 오류 메시지 표시 등
     }
+    });*/
+    /*
+    const subject = document.querySelector('input[name="subject"]').value;
+    const id = document.querySelector('input[name="id"]').value;
+    const content = document.querySelector('textarea[name="content"]').value;
 
-
-    // Redirect to view.html after collecting data
-    window.location.href = "store_List.html";
-    });
+    axios({
+        method : 'post',
+        url : ''
+    })*/
 
 
 </script>
