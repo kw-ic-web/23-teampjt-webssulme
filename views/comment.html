@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width; initiak-scale=1.0">
+        <title>Document</title>
+        <link rel = "stylesheet" href="css/comment.css">
+    </head>
+    <body>
+        <div>
+            <ul class ="comment">
+                <li class="comment-form">
+                    <form id="commentFrm">
+                        <h3>댓글 작성<span></span></h3>
+                        <span class="ps_box">
+                            <input type="text" placeholder="댓글 내용을 입력해주세요" class="int" name="content"/>
+                        </span>
+                        <input type="submit" class ="btn" value="등록">
+                    </form> 
+                </li>
+                <li id="comment-list"></li>
+            </ul>
+        </div>
+        <!--script scr="js/comment.js"></script>-->
+    </body>
+</html>
+
+<script>
+
+    const commentBtn = document.querySelector("#commentFrm");
+    const commentList = document.querySelector("#comment-list");
+    const total = document.querySelector("h3 > span");
+
+    const list =[];
+    const replies = [];
+
+    function Comment(content){
+    this.userid="cloudcoke";   // user_nickname으로 바꾸고
+    this.content = content;
+    this.date="2023-11-23";  // createdat으로 하면됌.
+    //this.replies =  // 답글을 저장하는 배열
+
+    }
+
+function createRow(userid, content, date, index){
+    const ul = document.createElement("ul");
+    const li1 = document.createElement("li");
+    const li2 = document.createElement("li");
+    const li3 = document.createElement("li");
+    //const li4 = document.createElement("li");
+
+    ul.append(li1);
+    ul.append(li2);
+    ul.append(li3);
+    //ul.append(li4);
+
+    ul.setAttribute("class", "comment-row");
+    li1.setAttribute("class", "comment-id");
+    li2.setAttribute("class", "comment-content");
+    li3.setAttribute("class", "comment-date");
+    //li4.setAttribute("class", "comment-reply");
+
+    li1.innerHTML= userid;
+    li2.innerHTML= content;
+    li3.innerHTML = date;
+    //li4.innerHTML = "<button class='reply-btn' data-index='" + index + "'>답글</button>"; // 답글 버튼 추가
+
+
+    return ul;
+    
+    }
+
+    function drawing(){
+        commentList.innerHTML="";
+        for(let i = list.length - 1; i>=0; i--){
+            const row = createRow(list[i].userid, list[i].content, list[i].date);
+            commentList.append(row);
+        }
+    }
+
+    function totalRecord(){
+        total.innerHTML=`(${list.length})`;
+    }
+
+
+
+    function commentBtnHandler(e){
+        e.preventDefault();
+        //list.push(e.target.content.value);
+        const input = e.target.content;
+        if(input.value === ""){
+        alert("댓글을 입력 한 후 등록 버튼을 눌러주세요.");
+        return console.log(list);
+        }
+        
+        const commentObj = new Comment(input.value);
+        list.push(commentObj);
+        totalRecord();
+
+
+        drawing();
+        e.target.reset();
+
+
+        return console.log(commentObj);
+    }   
+
+    commentBtn.addEventListener("submit",commentBtnHandler);
+
+    document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("reply-btn")) {
+        const index = e.target.getAttribute("data-index");
+        const replyContent = prompt("답글을 입력하세요:");
+    }
+});
+
+</script>

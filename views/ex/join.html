@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>회원가입 페이지</title>
+
+    <link href="css/signup.css" rel="stylesheet" />
+    <script src="/js/signup.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
+        <div class="email">
+            <input id="email" type="text" placeholder="아이디를 입력해 주세요.">
+            <button id="checkIdButton" onclick="checkID()">중복체크</button>
+            <div id="emailError" class="error"></div>
+        </div>
+        <div class="name">
+            <input id="name"  type="text" placeholder="닉네임을 입력해 주세요.">
+            <div id="nameError" class="error"></div>
+        </div>
+        <div class="password">
+            <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+            <div id="passwordError" class="error"></div>
+        </div>
+        <div class="passwordCheck">
+            <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+            <div id="passwordCheckError" class="error"></div>
+        </div>
+        <!--div class="gender">
+          <input id="gender_man" type="radio" name="gender">남성  
+          <input id="gender_woman" type="radio" name="gender">여성
+          <div id="genderError" class="error"></div>
+      </div>-->
+      <div class="line">
+          <hr>
+      </div>
+      <div class="signUp">
+          <button id="signUpButton" onclick="signUpCheck()">가입하기</button>
+      </div>
+  </div>
+
+</body>
+
+</html>

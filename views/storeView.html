@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel = 'stylesheet' href = "css/header.css">
+    <link rel = 'stylesheet' href = "../css/index.css">
+    
+</head>
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+    * {
+    margin: 0px;
+    font-family: "Do Hyeon";
+
+    }
+</style>
+<body>
+    <div id = 'head' class="header">
+        <div class="logo" onclick="location.href='/login'"></div>
+        <div class="button-container">
+          <!-- Conditionally render buttons based on login status -->
+          <!-- For example, you can use server-side templating or JavaScript to determine login status -->
+          <!-- Replace the following buttons with your server-side logic -->
+          <div class="nickname">
+            <div class="username">웹썰미</div>님
+          </div>
+          <button class="button" style="margin: 7px; margin-right: 15px;" onclick=" " location.href='/write'>새 글 작성</button>
+          <button class="button" style="margin: 7px; margin-right: 15px;" onclick="logout()">로그아웃</button>
+          <!-- Or render login/signup buttons -->
+          <!--
+            <button class="button" onclick="location.href='/login'">로그인</button>
+            <button class="button" onclick="location.href='/signup'">회원가입</button>
+          -->
+        </div>
+      </div>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>알바 후기 게시판</strong>
+            <p>알바생 여러분들 자유롭게 후기를 적어주세요.</p>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title">
+                    글 제목이 들어갑니다.
+                <div class="info">
+                    <dl>
+                        <dt>번호</dt>
+                        <dd id="PostNumber">1</dd>
+                    </dl>
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd id="userNickname">김이름</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd id="createdAt">2021.1.16</dd>
+                    </dl>
+                </div>
+                <div class="cont" id="cotent">
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다
+                </div>
+            </div>     
+            <div class="bt_wrap">
+                <a href="store_List.html" class="on">목록</a>
+                <a href="storeEdit.html">수정</a>
+                <!--button id="btn-delete" class ="btn btn-danger">삭제</button>-->
+            </div>
+        </div>
+    </div>
+</body>
+<body>
+    <div>
+        <li class="comment-form">
+            <form id="commentFrm">
+                <h3>댓글 작성<span></span></h3>
+                <span class="ps_box">
+                    <input type="text" placeholder="댓글 내용을 입력해주세요" class="int" name="content"/>
+                </span>
+                <input type="submit" class ="btn" value="등록">
+            </form> 
+        </li>
+        <li id="comment-list"></li>
+    </div>
+    <!--script src="js/comment.js"></script>--> 
+</body>
+</html>
+
+<script>
+    // 자신이 작성한 글 목록 가져오기 API
+      const commentBtn = document.querySelector("#commentFrm");
+      const commentList = document.querySelector("#comment-list");
+      const total = document.querySelector("h3 > span");
+  
+      const list =[];
+  
+      function Comment(content){
+      this.userid="cloudcoke";   // user_nickname으로 바꾸고
+      this.content = content;
+      this.date="2023-11-23";  // createdat으로 하면됌.
+  
+      }
+  
+      function createRow(userid, content, date){
+      const ul = document.createElement("ul");
+      const li1 = document.createElement("li");
+      const li2 = document.createElement("li");
+      const li3 = document.createElement("li");
+  
+      ul.append(li1);
+      ul.append(li2);
+      ul.append(li3);
+  
+      ul.setAttribute("class", "comment-row");
+      li1.setAttribute("class", "comment-id");
+      li2.setAttribute("class", "comment-content");
+      li3.setAttribute("class", "comment-date");
+  
+      li1.innerHTML=userid;
+      li2.innerHTML=content;
+      li3.innerHTML = date;
+  
+  
+      return ul;
+      
+      }
+  
+      function drawing(){
+          commentList.innerHTML="";
+          for(let i = list.length - 1; i>=0; i--){
+              const row = createRow(list[i].userid, list[i].content, list[i].date);
+              commentList.append(row);
+          }
+      }
+  
+      function totalRecord(){
+          total.innerHTML=`(${list.length})`;
+      }
+  
+  
+  
+      function commentBtnHandler(e){
+          e.preventDefault();
+          //list.push(e.target.content.value);
+          const input = e.target.content;
+          if(input.value === ""){
+          alert("댓글을 입력 한 후 등록 버튼을 눌러주세요.");
+          return console.log(list);
+          }
+          
+          const commentObj = new Comment(input.value);
+          list.push(commentObj);
+          totalRecord();
+  
+  
+          drawing();
+          e.target.reset();
+  
+  
+          return console.log(commentObj);
+      }   
+
+      commentBtn.addEventListener("submit",commentBtnHandler);
+
+  
+  
+  
+  </script>
