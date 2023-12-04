@@ -7,47 +7,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  SSH_KEY: |
-    -----BEGIN OPENSSH PRIVATE KEY-----
-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
------END OPENSSH PRIVATE KEY-----
-
 permissions:
   contents: read
 
@@ -102,7 +61,7 @@ jobs:
       with:
         host: 35.212.196.164
         username: pswlove38
-        key: ${{ env.SSH_KEY }}
+        key: ${{ secrets.SSH }}
         port: 22
         script: |
           sudo docker rm -f $(docker ps -qa)
