@@ -15,23 +15,68 @@ import java.util.Map;
 import java.util.Objects;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RestController
+@org.springframework.stereotype.Controller
 public class Controller {
 
     @Autowired
     Service service;
 
-    @GetMapping("/test")
-    public String test(Model model) throws Exception{
-        return "test";
+    // 메인페이지
+    // 메이페이지 보여주기
+    @GetMapping("/")
+    public String showMain(Model model) throws Exception{
+        try {
+            return "main";
+        } catch (Exception e){
+            System.out.println("메인페이지 로딩 실패");
+            System.out.println(e);
+            return null;
+        }
     }
 
-    @GetMapping("/test2")
-    public String test2(Model model) throws Exception{
-        return "test2";
+    // 메인페이지에서 카테고리 클릭시, 해당 카테고리 음식점 목록
+    @GetMapping("/category/{category}")
+    public List<storeModel> getCategoryStoreList(@PathVariable("category") String category) throws Exception{
+        try {
+            List<storeModel> storeList = service.getCategoryStoreList(category);
+
+            return storeList;
+        } catch (Exception e){
+            System.out.println(category  + " 카테고리 가게 리스트를 가져오는데 실패하였습니다.");
+            System.out.println(e);
+            return null;
+        }
     }
+
+    // 가게 후기 목록 가져오기
+    @GetMapping("/store/comment/{store_id}")
+    public List<storeCommentModel> getStoreCommentList(@PathVariable("store_id") String store_id) throws Exception{
+        try {
+            List<storeCommentModel> storeCommentList = service.getStoreCommentList(store_id);
+
+            return  storeCommentList;
+        } catch (Exception e) {
+            System.out.println(store_id + "의 가게 후기를 가져오는 과정에서 오류가 발생했습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
 
     // 로그인
+    // 로그인 페이지
+    @GetMapping("/login")
+    public String show(Model model) throws Exception{
+        try {
+            return "login";
+        } catch (Exception e){
+            System.out.println("로그인 페이지 로딩 실패");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 로그인 체크
     @PostMapping("/login/check/{nickname}/{pw}")
     public List<userModel> loginCheck(@PathVariable("nickname") String nickname, @PathVariable("pw") String pw) throws Exception{
         try {
@@ -53,7 +98,20 @@ public class Controller {
         }
     }
 
+    
     // 회원가입
+    // 회원가입 페이지
+    @GetMapping("join")
+    public String showJoinPage(Model model) throws Exception{
+        try {
+            return "join";
+        } catch (Exception e){
+            System.out.println("회원가입 페이지 로딩 실패");
+            System.out.println(e);
+            return null;
+        }
+    }
+
     // ID 중복 확인
     @ResponseBody
     @GetMapping("/join/idCheck/{nickname}")
@@ -74,7 +132,7 @@ public class Controller {
         }
     }
 
-    // 회원가입
+    // 회원가입 기능
     @PostMapping("/join/insert/{nickname}/{pw}")
     public boolean insertUser(@PathVariable("nickname") String nickname, @PathVariable("pw") String pw, Model model) throws  Exception{
         try {
@@ -92,16 +150,53 @@ public class Controller {
         }
     }
 
+
     // 자유게시판
     // 자유게시판 메인 페이지 로딩
     @GetMapping("/freeboard")
     public String showFreeBoardMainPage() throws Exception{
         try {
-            return "list";
+            return "free_boardList";
         } catch (Exception e){
             System.out.println("자유게시판 메인페이지 로딩 실패");
             System.out.println(e);
-            return "error";
+            return null;
+        }
+    }
+
+    // 자유게시판 글 작성 페이지 로딩
+    @GetMapping("/freeboardwrite")
+    public String showFreeBoardWritePage() throws Exception{
+        try {
+            return "free_boardWrite";
+        } catch (Exception e){
+            System.out.println("자유게시판 글 작성 로딩 실패");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 자유게시판 글 수정 페이지 로딩
+    @GetMapping("/freeboardedit")
+    public String showFreeBoardEditPage() throws Exception{
+        try {
+            return "free_boardEdit";
+        } catch (Exception e){
+            System.out.println("자유게시판 글 수정 로딩 실패");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 자유게시판 자신이 작성한 글 페이지 로딩
+    @GetMapping("/freeboardview")
+    public String showFreeBoardViewPage() throws Exception{
+        try {
+            return "free_boardView";
+        } catch (Exception e){
+            System.out.println("자유게시판 자신이 작성한 글 페이지 실패");
+            System.out.println(e);
+            return null;
         }
     }
 
@@ -158,7 +253,6 @@ public class Controller {
         }
     }
 
-
     // 작성한 자유게시판 글을 수정 (edit.html)
     @PutMapping("/freeboard/putcontent/{id}/{title}/{content}")
     public boolean putFreeBoardContent(@PathVariable("id") int id,
@@ -181,37 +275,19 @@ public class Controller {
     }
 
 
-
-    // 메인페이지
-    // 메인페이지에서 카테고리 클릭시, 해당 카테고리 음식점 목록
-    @GetMapping("/category/{category}")
-    public List<storeModel> getCategoryStoreList(@PathVariable("category") String category) throws Exception{
-        try {
-            List<storeModel> storeList = service.getCategoryStoreList(category);
-
-            return storeList;
-        } catch (Exception e){
-            System.out.println(category  + " 카테고리 가게 리스트를 가져오는데 실패하였습니다.");
-            System.out.println(e);
-            return null;
-        }
-    }
-
-    // 가게 후기 목록 가져오기
-    @GetMapping("/store/comment/{store_id}")
-    public List<storeCommentModel> getStoreCommentList(@PathVariable("store_id") String store_id) throws Exception{
-        try {
-            List<storeCommentModel> storeCommentList = service.getStoreCommentList(store_id);
-
-            return  storeCommentList;
-        } catch (Exception e) {
-            System.out.println(store_id + "의 가게 후기를 가져오는 과정에서 오류가 발생했습니다.");
-            System.out.println(e);
-            return null;
-        }
-    }
-
     // 마이페이지
+    // 마이페이지 메인 페이지
+    @GetMapping("/mypage")
+    public String showMyPage() throws Exception{
+        try {
+            return "mypage";
+        } catch (Exception e){
+            System.out.println("자유게시판 글 작성 로딩 실패");
+            System.out.println(e);
+            return "null";
+        }
+    }
+
     // 마이페이지에 자신이 작성한 자유게시판 글의 리스트를 가져오기
     @GetMapping("/mypage/contentlist/{nickname}")
     public List<freeBoardModel> getMyFreeBoardContentList(@PathVariable("nickname") String user_nickname) throws Exception{
