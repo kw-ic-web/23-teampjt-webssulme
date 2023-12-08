@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.web.mapper.Mapper">
+<mapper namespace="com.example.newweb.mapper.Mapper">
 
     <!-- 로그인 -->
-    <select id="loginCheck" resultType="com.example.web.model.userModel">
+    <select id="loginCheck" resultType="com.example.newweb.model.userModel">
         select *
         from user
         where nickname=#{nickname} and pw=#{pw};
@@ -24,7 +24,7 @@
     </insert>
 
     <!-- 자유게시판 -->
-    <select id="getFreeBoardList" resultType="com.example.web.model.freeBoardModel">
+    <select id="getFreeBoardList" resultType="com.example.newweb.model.freeBoardModel">
         select *
         from free_board;
     </select>
@@ -34,7 +34,7 @@
         values (#{user_nickname}, #{title}, #{content});
     </insert>
 
-    <select id="getCompleteContent" resultType="com.example.web.model.freeBoardModel">
+    <select id="getCompleteContent" resultType="com.example.newweb.model.freeBoardModel">
         select *
         from free_board
         where id = #{id};
@@ -42,13 +42,13 @@
 
 
     <!-- 마이페이지 -->
-    <select id="getMyFreeBoardContentList" resultType="com.example.web.model.freeBoardModel">
+    <select id="getMyFreeBoardContentList" resultType="com.example.newweb.model.freeBoardModel">
         select *
         from free_board
         where user_nickname=#{user_nickname};
     </select>
 
-    <select id="getMypageCommentList" resultType="com.example.web.model.storeCommentModel">
+    <select id="getMypageCommentList" resultType="com.example.newweb.model.storeCommentModel">
         select *
         from store_comment
         where user_nickname=#{user_nickname};
@@ -61,13 +61,13 @@
     </update>
 
     <!-- 메인페이지 -->
-    <select id="getCategoryStoreList" resultType="com.example.web.model.storeModel">
+    <select id="getCategoryStoreList" resultType="com.example.newweb.model.storeModel">
         select *
         from store
         where category = #{category};
     </select>
 
-    <select id="getStoreCommentList" resultType="com.example.web.model.storeCommentModel">
+    <select id="getStoreCommentList" resultType="com.example.newweb.model.storeCommentModel">
         select *
         from store_comment
         where store_id = #{store_id};
