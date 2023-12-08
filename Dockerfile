@@ -1,5 +1,5 @@
 # java 11 기반
-FROM openjdk:11
+FROM openjdk:17
 # WAR_FILE에 파일 경로 설정
 ARG WAR_FILE=build/libs/*.war
 # 8080포트 노출
