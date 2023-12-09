@@ -1,9 +1,6 @@
 package com.example.newweb.controller;
 
-import com.example.newweb.model.freeBoardModel;
-import com.example.newweb.model.storeCommentModel;
-import com.example.newweb.model.storeModel;
-import com.example.newweb.model.userModel;
+import com.example.newweb.model.*;
 import com.example.newweb.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -61,6 +58,26 @@ public class Controller {
         }
     }
 
+    // 가게 후기 작성
+    @ResponseBody
+    @PostMapping("/store/comment/{user_nickname}/{store_id}/{content}")
+    public boolean insertStoreComment(@PathVariable("user_nickname") String user_nickname,
+                                     @PathVariable("store_id") int store_id, @PathVariable("content") String content) throws Exception{
+        try {
+            storeCommentModel storeComment = new storeCommentModel();
+            storeComment.setUser_nickname(user_nickname);
+            storeComment.setStore_id(store_id);
+            storeComment.setComment(content);
+            boolean result = service.insertStoreComment(user_nickname, store_id, content);
+            System.out.println(user_nickname + "유저의 " + store_id + "가게의 후기가 작성되었습니다.");
+
+            return result;
+        } catch (Exception e) {
+            System.out.println(store_id + "의 가게 후기를 작성하는 과정에서 오류가 발생했습니다.");
+            System.out.println(e);
+            return false;
+        }
+    }
 
     // 로그인
     // 로그인 페이지
@@ -279,15 +296,61 @@ public class Controller {
         }
     }
 
+    // 자유게시판 특정 글의 댓글 가져오기
+    @ResponseBody
+    @GetMapping("/freeboard/getcontent/{free_board_id}")
+    public List<freeBoardCommentModel> getFreeBoardCommentList(@PathVariable("free_board_id") int free_board_id) throws Exception{
+        try {
+            List<freeBoardCommentModel> freeBoardCommentList = service.getFreeBoardCommentList(free_board_id);
+
+            System.out.println("자유게시판 글의 댓글을 가져오는데 성공하였습니다.");
+            return freeBoardCommentList;
+        } catch (Exception e) {
+            System.out.println("자유게시판 글의 댓글을 가져오는데 실패하였습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 자유게시판 특정 글에 댓글 작성하기
+    @ResponseBody
+    @PostMapping("/freeboard/insertcontent/{free_board_id}/{user_nickname}/{content}")
+    public boolean insertFreeBoardComment(@PathVariable("free_board_id") int free_board_id,
+                                          @PathVariable("user_nickname") String user_nickname,
+                                          @PathVariable("content") String content) throws Exception{
+        try {
+            boolean result = service.insertFreeBoardComment(free_board_id, user_nickname, content);
+
+            System.out.println("자유게시판 글에 댓글을 작성하였습니다.");
+            return result;
+        } catch (Exception e) {
+            System.out.println("자유게시판 글에 댓글을 작성하는데 실패하였습니다.");
+            System.out.println(e);
+            return false;
+        }
+    }
+
 
     // 마이페이지
-    // 마이페이지 메인 페이지
+    // 마이페이지 메인 페이지 로딩
     @GetMapping("/mypage")
     public String showMyPage() throws Exception{
         try {
             return "mypage";
         } catch (Exception e){
-            System.out.println("자유게시판 글 작성 로딩 실패");
+            System.out.println("마이페이지 로딩 실패");
+            System.out.println(e);
+            return "null";
+        }
+    }
+
+    // 프로필 변경 페이지 로딩
+    @GetMapping("/mypage/profile")
+    public String showMyPageProfile() throws Exception{
+        try {
+            return "editmyprofile";
+        } catch (Exception e){
+            System.out.println("프로필 변경 페이지 로딩 실패");
             System.out.println(e);
             return "null";
         }
@@ -321,6 +384,37 @@ public class Controller {
             System.out.println("등록한 자신의 댓글을 가져오는 과정에서 오류가 발생하였습니다.");
             System.out.println(e);
             return null;
+        }
+    }
+
+    // 프로필 가져오기
+    @ResponseBody
+    @GetMapping("/mypage/profile/{nickname}")
+    public userModel getMypageProfile(@PathVariable("nickname") String nickname) throws Exception{
+        try {
+            userModel info = service.getMypageProfile(nickname);
+
+            return info;
+        } catch (Exception e){
+            System.out.println("자신의 프로필을 가져오는 과정에서 오류가 발생하였습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 프로필 편집하기(비밀번호)
+    @ResponseBody
+    @PutMapping("/mypage/profile/{nickname}/{pw}")
+    public boolean postMypageProfile(@PathVariable("nickname") String nickname, @PathVariable("pw") String pw) throws Exception{
+        try {
+            boolean result = service.postMypageProfile(nickname, pw);
+
+            System.out.println(nickname + "의 유저의 비밀번호를 " + pw + "로 정상적으로 변경하였습니다.");
+            return result;
+        } catch (Exception e){
+            System.out.println("프로필을 수정하는 과정에서 오류가 발생하였습니다.");
+            System.out.println(e);
+            return false;
         }
     }
 }

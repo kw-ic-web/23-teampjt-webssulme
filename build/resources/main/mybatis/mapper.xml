@@ -40,6 +40,17 @@
         where id = #{id};
     </select>
 
+    <select id="getFreeBoardCommentList" resultType="com.example.newweb.model.freeBoardCommentModel">
+        select *
+        from free_board_comment
+        where free_board_id = #{free_board_id};
+    </select>
+
+    <insert id="insertFreeBoardComment">
+        insert into free_board_comment (free_board_id, user_nickname, content)
+        values (#{free_board_id}, #{user_nickname}, #{content});
+    </insert>
+
 
     <!-- 마이페이지 -->
     <select id="getMyFreeBoardContentList" resultType="com.example.newweb.model.freeBoardModel">
@@ -60,6 +71,18 @@
         where id = #{id};
     </update>
 
+    <select id="getMypageProfile" resultType="com.example.newweb.model.userModel">
+        select *
+        from user
+        where nickname = #{nickname};
+    </select>
+
+    <update id="postMypageProfile">
+        update user
+        set pw = #{pw}, updated_at = #{updated_at}
+        where nickname = #{nickname};
+    </update>
+
     <!-- 메인페이지 -->
     <select id="getCategoryStoreList" resultType="com.example.newweb.model.storeModel">
         select *
@@ -72,5 +95,10 @@
         from store_comment
         where store_id = #{store_id};
     </select>
+
+    <insert id="insertStoreComment">
+        insert into store_comment (user_nickname, store_id, content)
+        values (#{user_nickname}, #{store_id}, #{content});
+    </insert>
 
 </mapper>

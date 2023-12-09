@@ -1,10 +1,7 @@
 package com.example.newweb.service;
 
 import com.example.newweb.mapper.Mapper;
-import com.example.newweb.model.freeBoardModel;
-import com.example.newweb.model.storeCommentModel;
-import com.example.newweb.model.storeModel;
-import com.example.newweb.model.userModel;
+import com.example.newweb.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
@@ -52,6 +49,18 @@ public class Service {
         return  mapper.getCompleteContent(id);
     }
 
+    // 자유게시판 특정 글의 댓글을 가져옴
+    public List<freeBoardCommentModel> getFreeBoardCommentList(int free_board_id){
+        return mapper.getFreeBoardCommentList(free_board_id);
+    }
+
+    // 자유게시판 특정 글에 댓글 작성하기
+    public boolean insertFreeBoardComment(int free_board_id, String user_nickname, String content){
+        if(mapper.insertFreeBoardComment(free_board_id, user_nickname, content))
+            return true;
+        else
+            return false;
+    }
 
     // 마이페이지
     // 자유게시판에 등록된 자신의 글을 가져옴
@@ -70,6 +79,20 @@ public class Service {
         return mapper.putFreeBoardContent(id, title, content, updated_at);
     }
 
+    // 프로필 가져오기
+    public userModel getMypageProfile(String nickname) throws Exception{
+        return mapper.getMypageProfile(nickname);
+    }
+
+    // 프로필 편집
+    public boolean postMypageProfile(String nickname, String pw) throws Exception{
+        Timestamp updated_at = new Timestamp(new Date().getTime());
+        if(mapper.postMypageProfile(nickname, pw, updated_at))
+            return true;
+        else
+            return false;
+    }
+
     // 메인페이지
     // 메인페이지 카테고리 클릭시, 해당 카테고리 가게 목록 리스트
     public List<storeModel> getCategoryStoreList(String category) throws Exception{
@@ -80,5 +103,13 @@ public class Service {
     // 해당 가게 후기 가져오기
     public List<storeCommentModel> getStoreCommentList(String store_id) throws Exception{
         return mapper.getStoreCommentList(store_id);
+    }
+
+    // 해당 가게에 후기 추가
+    public boolean insertStoreComment(String user_nickname, int store_id, String content) throws Exception{
+        if (mapper.insertStoreComment(user_nickname, store_id, content))
+            return true;
+        else
+            return false;
     }
 }
