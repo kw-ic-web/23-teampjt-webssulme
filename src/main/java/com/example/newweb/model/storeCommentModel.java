@@ -10,7 +10,7 @@ public class storeCommentModel {
     private String user_nickname;
     private int store_id;
     private float score;
-    private String comment;
+    private String content;
     private int type;
     private int parent_id;
     private Timestamp created_at;

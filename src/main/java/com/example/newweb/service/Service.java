@@ -100,6 +100,10 @@ public class Service {
         return storeList;
     }
 
+    public storeModel getStore(int store_id) throws Exception{
+        return mapper.getStore(store_id);
+    }
+
     // 해당 가게 후기 가져오기
     public List<storeCommentModel> getStoreCommentList(String store_id) throws Exception{
         return mapper.getStoreCommentList(store_id);

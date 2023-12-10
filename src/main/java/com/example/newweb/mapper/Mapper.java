@@ -55,6 +55,8 @@ public interface Mapper {
     // 메인페이지 카테고리 클릭시, 해당 카테고리 가게 목록
     public List<storeModel> getCategoryStoreList(String category);
 
+    public storeModel getStore(int store_id);
+
     // 해당 가게의 후기 목록을 가져옴
     public List<storeCommentModel> getStoreCommentList(String store_id);
 

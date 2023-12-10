@@ -43,6 +43,22 @@ public class Controller {
         }
     }
 
+    // 카테고리 별로 분류된 목록 중, 특정 음식점 정보 가져오기
+    @ResponseBody
+    @GetMapping("/store/{store_id}")
+    public storeModel getStore(@PathVariable("store_id") int store_id) throws Exception{
+        try {
+            storeModel storeInfo = service.getStore(store_id);
+            System.out.println("가게 정보를 가져오는데 성공하였습니다.");
+
+            return storeInfo;
+        } catch (Exception e){
+            System.out.println("가게 정보를 가져오는데 실패하였습니다.");
+            System.out.println(e);
+            return null;
+        }
+    }
+
     // 가게 후기 목록 가져오기
     @ResponseBody
     @GetMapping("/store/comment/{store_id}")
@@ -67,7 +83,7 @@ public class Controller {
             storeCommentModel storeComment = new storeCommentModel();
             storeComment.setUser_nickname(user_nickname);
             storeComment.setStore_id(store_id);
-            storeComment.setComment(content);
+            storeComment.setContent(content);
             boolean result = service.insertStoreComment(user_nickname, store_id, content);
             System.out.println(user_nickname + "유저의 " + store_id + "가게의 후기가 작성되었습니다.");
 
