@@ -372,6 +372,32 @@ public class Controller {
         }
     }
 
+    // 마이페이지 내가 작성한 자유게시판 글 페이지 로딩
+    @GetMapping("/mypage/myfreepost")
+    public String showMyPageMyFreePost() throws Exception{
+        try {
+            System.out.println("마이페이지 내가 작성한 자유게시판 글 페이지 로딩 성공");
+            return "myfreepost";
+        } catch (Exception e){
+            System.out.println("마이페이지 내가 작성한 자유게시판 글 페이지 로딩 실패");
+            System.out.println(e);
+            return "null";
+        }
+    }
+
+    // 마이페이지 내가 작성한 후기 목록 페이지 로딩
+    @GetMapping("/mypage/mypost")
+    public String showMyPageMyPost() throws Exception{
+        try {
+            System.out.println("마이페이지 내가 작성한 후기 목록 페이지 로딩 성공");
+            return "mypost";
+        } catch (Exception e){
+            System.out.println("마이페이지 내가 작성한 후기 목록 페이지 로딩 실패");
+            System.out.println(e);
+            return "null";
+        }
+    }
+
     // 마이페이지에 자신이 작성한 자유게시판 글의 리스트를 가져오기
     @ResponseBody
     @GetMapping("/mypage/contentlist/{nickname}")

@@ -90,6 +90,12 @@
         where category = #{category};
     </select>
 
+    <select id="getStore" resultType="com.example.newweb.model.storeModel">
+        select *
+        from store
+        where id = #{store_id};
+    </select>
+
     <select id="getStoreCommentList" resultType="com.example.newweb.model.storeCommentModel">
         select *
         from store_comment
