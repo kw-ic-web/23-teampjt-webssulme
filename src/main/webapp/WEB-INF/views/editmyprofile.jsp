@@ -26,10 +26,10 @@
 
     <div class="nav__bar">
         <ul class="nav__menu">
-            <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
-            <li><a href="../freeboardpage.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
-            <li><a href="../mypage.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
+            <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="../freeboardpage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
+            <li><a href="../mypage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
     </div>
 </div>
@@ -80,7 +80,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage.html';
+            window.location.href = 'mypage';
         }
     }
 
@@ -89,7 +89,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList.html';
+            window.location.href = 'free_boardList';
         }
     }
 
@@ -125,7 +125,7 @@
                 console.log(res)
                 if (res.data) {
                     alert("비밀번호 변경이 완료되었습니다 !");
-                    document.location.href = "main.html";
+                    document.location.href = "/";
 
                 }
                 else {
@@ -145,7 +145,7 @@
             localStorage.removeItem('pwd');
             localStorage.removeItem('is_logined');
             alert("로그아웃 되었습니다.");
-            window.location.href = 'main.html';
+            window.location.href = '/';
         }catch (error) {
             console.error('오류 발생:', error);
         }

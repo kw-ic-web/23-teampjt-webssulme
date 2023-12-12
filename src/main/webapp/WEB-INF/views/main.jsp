@@ -16,7 +16,7 @@
 
 <body>
 <div id = 'head' class="header">
-  <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+  <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="100px" onclick="location.href='/'">
 
 
   <div class="button-container" id="buttonContainer">
@@ -221,7 +221,7 @@
       localStorage.removeItem('pwd');
       localStorage.removeItem('is_logined');
       alert("로그아웃 되었습니다.");
-      window.location.href = 'main';
+      window.location.href = '/';
     }catch (error) {
       console.error('오류 발생:', error);
     }

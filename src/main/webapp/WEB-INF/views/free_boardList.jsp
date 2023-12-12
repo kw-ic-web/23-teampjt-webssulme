@@ -28,8 +28,8 @@
 
     <div class="nav__bar">
         <ul class="nav__menu">
-            <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -65,7 +65,7 @@
             <p>알바 고민 상담을 해봐요 !</p>
         </div>
 
-        <input class="button" visibility = "hidden;"  style= "margin-right:40px;" type="button" id="Btn" value="글쓰기" onclick="location.href='free_boardWrite.html'">
+        <input class="button" visibility = "hidden;"  style= "margin-right:40px;" type="button" id="Btn" value="글쓰기" onclick="location.href='free_boardWrite'">
     </div>
 
     <!--    <div class="button-wrapper">-->
@@ -75,7 +75,7 @@
         <div class="board_list" id ="boardList" >
             <div>
                 <div class="num"></div>
-                <div class="title"><a href="free_boardView.html"></a></div>
+                <div class="title"><a href="free_boardView"></a></div>
                 <div class="writer"></div>
                 <div class="date"></div>
             </div>
@@ -84,7 +84,7 @@
 
         <div id = 'bt' class="bt_wrap">
 
-            <a href="#"  class="bt prev"> <이전 </a>
+            <a href="#"  class="bt prev"> 이전< </a>
             <a href="#"  class="bt next"> >다음 </a>
         </div>
 
@@ -136,7 +136,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage.html';
+            window.location.href = 'mypage';
         }
     }
 
@@ -145,7 +145,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList.html';
+            window.location.href = 'free_boardList';
         }
     }
 
@@ -200,7 +200,7 @@
 
                     itemContainer.innerHTML = `
            <div class="num">${i + 1}</div>
-            <div class="title"><a href="free_boardView.html?idx=${item.id}">${item.title}</a></div>
+            <div class="title"><a href="free_boardView?idx=${item.id}">${item.title}</a></div>
             <div class="writer">${item.user_nickname}</div>
             <div class="date">${formattedDate}</div>
             <div class="idx" style="display: none;">${item.id}</div>

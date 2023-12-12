@@ -26,8 +26,8 @@
 
   <div class="nav__bar">
     <ul class="nav__menu">
-      <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-      <li><a href="storeList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+      <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+      <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
       <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
       <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
     </ul>
@@ -40,7 +40,7 @@
     <div class="myprofile">
       <!-- <img src="../img/person.png"  class = "im" alt="프로필" width="50px" height="30px"> -->
       <p class = 'h2' id = 'name1'></p>
-      <button class='btn' onclick="location.href='editmyprofile.html'">프로필 편집</button>
+      <button class='btn' onclick="location.href='editmyprofile'">프로필 편집</button>
 
       <h3 class = 'h2'>나의 활동</h3>
       <button class='btn' onclick="mypost();">내가 작성한 알바 후기</button>
@@ -87,7 +87,7 @@
         alert('로그인 후 이용가능합니다!')
       }
       else{
-        window.location.href = 'mypage.html';
+        window.location.href = 'mypage';
       }
     }
 
@@ -96,7 +96,7 @@
         alert('로그인 후 이용가능합니다!')
       }
       else{
-        window.location.href = 'free_boardList.html';
+        window.location.href = 'free_boardList';
       }
     }
 
@@ -115,7 +115,7 @@
                   queryParams.append('data', JSON.stringify(dataArray));
 
                   // URL에 쿼리 매개변수 추가하여 이동
-                  window.location.href = `mypost.html?${queryParams.toString()}`;
+                  window.location.href = `mypost?${queryParams.toString()}`;
                 });
       } catch (error) {
         console.error('오류 발생:', error);
@@ -137,7 +137,7 @@
                   queryParams.append('data', JSON.stringify(dataArray));
 
                   // URL에 쿼리 매개변수 추가하여 이동
-                  window.location.href = `myfreepost.html?${queryParams.toString()}`;
+                  window.location.href = `myfreepost?${queryParams.toString()}`;
                 });
       } catch (error) {
         console.error('오류 발생:', error);
@@ -157,7 +157,7 @@
         localStorage.removeItem('pwd');
         localStorage.removeItem('is_logined');
         alert("로그아웃 되었습니다.");
-        window.location.href = 'main.html';
+        window.location.href = '/';
       }catch (error) {
         console.error('오류 발생:', error);
       }

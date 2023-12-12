@@ -25,8 +25,8 @@
 
     <div class="nav__bar">
         <ul class="nav__menu">
-            <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -58,7 +58,7 @@
         </div>
         <div class="bt_wrap">
             <a id="editbtn" class="on">수정</a>
-            <a href="free_boardList.html">취소</a>
+            <a href="free_boardList">취소</a>
         </div>
     </div>
 </div>
@@ -104,7 +104,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage.html';
+            window.location.href = 'mypage';
         }
     }
     function mine() {
@@ -112,7 +112,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList.html';
+            window.location.href = 'free_boardList';
         }
     }
 
@@ -163,7 +163,7 @@
                 if (response.data === true) {
                     console.log("글 수정 성공!");
                     // Redirect or perform other actions on success
-                    window.location.href = 'free_boardList.html';
+                    window.location.href = 'free_boardList';
                     alert('수정이 완료되었습니다.')
                 } else {
                     console.log('글 수정 실패!');

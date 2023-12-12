@@ -98,8 +98,8 @@
 
     <div class="nav__bar">
         <ul class="nav__menu">
-            <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -207,7 +207,7 @@
                                 itemContainer.classList.add('item');
                                 itemContainer.innerHTML = `
                                 <div class="title" style="margin-left: 100px; margin-right: -100px;">
-                                      <a href="storeView.html?idx=${store.id}">${store.name}</a>
+                                      <a href="storeView?idx=${store.id}">${store.name}</a>
                                 </div>
                                 <div class="location">${store.location}</div>
                             `;
@@ -289,7 +289,7 @@
                                 itemContainer.classList.add('item');
                                 itemContainer.innerHTML = `
                                 <div class="title" style="margin-left: 100px; margin-right: -100px;">
-                                    <a href="storeView.html?idx=${store.id}">${store.name}</a>
+                                    <a href="storeView?idx=${store.id}">${store.name}</a>
                                 </div>
                                 <div class="location">${store.location}</div>
                             `;
@@ -378,7 +378,7 @@
                             itemContainer.classList.add('item');
                             itemContainer.innerHTML = `
                 <div class="title" style="margin-left: 100px; margin-right: -100px;">
-                    <a href="storeView.html?idx=${store.id}">${store.name}</a>
+                    <a href="storeView?idx=${store.id}">${store.name}</a>
                 </div>
                 <div class="location"">${store.location}</div>
             `;
@@ -463,7 +463,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage.html';
+            window.location.href = 'mypage';
         }
     }
 
@@ -472,7 +472,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList.html';
+            window.location.href = 'free_boardList';
         }
     }
 
@@ -630,7 +630,7 @@
             localStorage.removeItem('pwd');
             localStorage.removeItem('is_logined');
             alert("로그아웃 되었습니다.");
-            window.location.href = 'main.html';
+            window.location.href = '/';
         }catch (error) {
             console.error('오류 발생:', error);
         }

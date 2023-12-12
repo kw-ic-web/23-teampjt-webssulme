@@ -9,7 +9,6 @@
   <link rel = 'stylesheet' href = "/css/header.css">
   <link rel = 'stylesheet' href = "/css/index.css">
   <link rel = 'stylesheet' href = "/css/login.css">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
@@ -25,8 +24,8 @@
 
   <div class="nav__bar">
     <ul class="nav__menu">
-      <li><a href="main.html" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-      <li><a href="storeList.html" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+      <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+      <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
       <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
       <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
     </ul>
@@ -45,6 +44,9 @@
   <input  class="btn" onclick = "login();" type="submit" id="log_btn" value="로그인">
   <!-- </form>  -->
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript" >
 
@@ -79,7 +81,7 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'mypage.html';
+      window.location.href = 'mypage';
     }
   }
 
@@ -89,43 +91,44 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'free_boardList.html';
+      window.location.href = 'free_boardList';
     }
   }
 
 
   function login() {
-    var id =document.querySelector("input[name = 'id']").value;
-    var pwd = document.querySelector("input[name = 'pwd']").value;
-    const loginButton = document.getElementById("btn");
-    //  로그인 성공시 true / 실패시 false 반환
+    var id = document.querySelector("input[name='id']").value;
+    var pwd = document.querySelector("input[name='pwd']").value;
+
     try {
-      axios.post(`http://35.212.196.164/login/check/${id}/${pwd}`,{ withCredentials: true })
+      axios.post(`http://35.212.196.164:8080/login/check/${id}/${pwd}`, null, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
               .then(res => {
                 if (res.data[0]) {
-                  //  const is_logined = true;
-                  // 서버로부터 받아온 값 (가정)
-                  const userId  =  res.data[0].nickname;
-                  const userpw = res.data[0].pw ;
+                  const userId = res.data[0].nickname;
+                  const userpw = res.data[0].pw;
 
                   localStorage.setItem("id", userId);
                   localStorage.setItem("pwd", userpw);
-                  localStorage.setItem('is_logined', true);
+                  localStorage.setItem('is_login', true);
 
-                  alert(`${id} 님 환영합니다 !`);
+                  alert(`${id}이(가) 존재하지 않습니다!`);
 
-                  document.location.href = "main.html";
-                }
-
-
-                else { //반환값이 하나도 없을때
-                  alert("로그인 정보가 일치하지 않습니다. 다시 입력해주세요 !");
+                  document.location.href = "/";
+                } else {
+                  alert("당신의 친구가 당신을 기다리고 있습니다. 당신도 기다리고 있어요!");
                 }
               })
+              .catch(error => {
+                console.error('에러:', error);
+              });
     } catch (error) {
-      console.error('오류 발생:', error);
+      console.error('에러:', error);
     }
-
   }
 
 
@@ -136,7 +139,7 @@
       localStorage.removeItem('pwd');
       localStorage.removeItem('is_logined');
       alert("로그아웃 되었습니다.");
-      window.location.href = 'main.html';
+      window.location.href = '/';
     }catch (error) {
       console.error('오류 발생:', error);
     }
