@@ -28,6 +28,30 @@ public class Controller {
         }
     }
 
+    // 메인페이지 가게 목록 페이지 로딩
+    @RequestMapping("/storeList")
+    public String showStoreList(Model model) throws Exception{
+        try {
+            return "storeList";
+        } catch (Exception e){
+            System.out.println("메인페이지 가게 목록 페이지 로딩 성공");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // 메인페이지 해당 가게 상세 페이지 로딩
+    @RequestMapping("/storeView")
+    public String showStoreView(Model model) throws Exception{
+        try {
+            return "storeView";
+        } catch (Exception e){
+            System.out.println("메인페이지 해당 가게 상세 페이지 로딩 실패");
+            System.out.println(e);
+            return null;
+        }
+    }
+
     // 메인페이지에서 카테고리 클릭시, 해당 카테고리 음식점 목록
     @ResponseBody
     @GetMapping("/category/{category}")
