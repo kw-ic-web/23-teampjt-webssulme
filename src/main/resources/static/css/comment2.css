@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.review {
+    padding: 30px;
+    width: 80%;
+    margin: 0;
+    margin-left: 50px;
+}
+
+.review > li {
+    margin-top: 20px;
+}
+
+.comment-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-row > li {
+    flex-grow: 1;
+}
+
+.comment-row > li:nth-child(2) {
+    flex-shrink: 0;
+    padding-left: 25px;
+}
+
+.Review-form > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Review-form > form > h3 {
+    width: 80%;
+    margin: 14px 0;
+}
+
+.comment-content {
+    cursor: pointer;
+    word-break: break-all;
+    padding-right: 25px;
+
+}
+
+.ps_box2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 80%;
+    height: 500px;
+    border: solid 1px #dadada;
+    padding: 10px 14px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.ps_box2 > textarea {
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background: #fff;
+    font-size: 25px;
+    box-sizing: border-box;
+    word-break: break-all;
+
+}
+
+.ps_box2 > textarea, #string {
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background: #fff;
+    font-size: 25px;
+    box-sizing: border-box;
+    /* Add this line */
+}
+
+.btn {
+    width: 18%;
+    padding: 18px 0 16px;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+}
