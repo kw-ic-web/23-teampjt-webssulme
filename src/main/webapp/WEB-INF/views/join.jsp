@@ -137,7 +137,7 @@
 
     console.log(id)
     // 아이디 중복 확인 요청 코드 => 서버
-    axios.get(`http://35.212.196.164/join/idCheck/${id}`)
+    axios.get(`http://35.212.196.164:8080/join/idCheck/${id}`)
             .then(res => {
               // 중복값이 있으면 true, 없으면 false로 반환해온 값을 받아옴
               if (res.data) {
@@ -177,7 +177,7 @@
     var pwd = document.querySelector("input[name = 'pwd']").value;
 
     try {
-      axios.post(`http://35.212.196.164/join/insert/${id}/${pwd}`,{ withCredentials: true })
+      axios.post(`http://35.212.196.164:8080/join/insert/${id}/${pwd}`,{ withCredentials: true })
               .then(res => {
                 console.log(res)
                 if (res.data) {

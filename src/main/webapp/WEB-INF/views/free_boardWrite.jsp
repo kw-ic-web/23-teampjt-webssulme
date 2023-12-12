@@ -178,7 +178,7 @@
         }
 
         try {
-            const response = await axios.post(`http://35.212.196.164/freeboard/insertnewcontent/${id}/${subject}/${content}`);
+            const response = await axios.post(`http://35.212.196.164:8080/freeboard/insertnewcontent/${id}/${subject}/${content}`);
             console.log(id);
             console.log(response.data);
 

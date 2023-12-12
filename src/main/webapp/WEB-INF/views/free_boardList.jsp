@@ -153,7 +153,7 @@
     window.onload = async function () {
         // 서버로부터 자유게시판 목록을 가져오는 요청
         try {
-            const response = await axios.get('http://35.212.196.164/freeboard/getfreeboardlist');
+            const response = await axios.get('http://35.212.196.164:8080/freeboard/getfreeboardlist');
 
             // 서버로부터 받은 데이터를 변수에 저장
             const boardList = response.data;

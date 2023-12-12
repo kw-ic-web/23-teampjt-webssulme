@@ -155,7 +155,7 @@
             console.log(idx); // Now, idx should
 
             try {
-                const response = await axios.put(`http://35.212.196.164/freeboard/putcontent/${idx}/${updatedSubject}/${updatedContent}`);
+                const response = await axios.put(`http://35.212.196.164:8080/freeboard/putcontent/${idx}/${updatedSubject}/${updatedContent}`);
 
                 console.log(response.data);
 

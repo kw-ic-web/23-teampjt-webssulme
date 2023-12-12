@@ -120,7 +120,7 @@
     function signup() {
         var pwd = document.querySelector("input[name = 'pwd']").value;
 
-        try { axios.put(`http://35.212.196.164/mypage/profile/${id}/${pwd}`,{ withCredentials: true })
+        try { axios.put(`http://35.212.196.164:8080/mypage/profile/${id}/${pwd}`,{ withCredentials: true })
             .then(res => {
                 console.log(res)
                 if (res.data) {

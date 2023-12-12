@@ -173,7 +173,7 @@
         // 카테고리가 존재할 경우에만 요청을 보냄
         if (category) {
             // 서버로의 요청을 보내는 부분
-            axios.get(`http://35.212.196.164/category/${category}`)
+            axios.get(`http://35.212.196.164:8080/category/${category}`)
                 .then(function (response) {
                     // 요청이 성공한 경우 실행되는 부분
                     const data = response.data;
@@ -255,7 +255,7 @@
         }
         else{
 
-            axios.get(`http://35.212.196.164/category/카페`)
+            axios.get(`http://35.212.196.164:8080/category/카페`)
                 .then(function (response) {
                     // 요청이 성공한 경우 실행되는 부분
                     const data = response.data;
@@ -353,7 +353,7 @@
         element.style.fontSize = '1.2em'; // 클릭한 카테고리의 폰트 크기 키우기
         element.style.fontWeight = 'bold';
         const titleContent = document.querySelector('.title-content strong');
-        const url = `http://35.212.196.164/category/${category}`;
+        const url = `http://35.212.196.164:8080/category/${category}`;
 
         fetch(url)
             .then(response => response.json()) // JSON 형태로 변환

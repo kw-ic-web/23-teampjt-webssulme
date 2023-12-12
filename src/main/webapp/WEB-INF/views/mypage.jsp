@@ -106,7 +106,7 @@
       const id = localStorage.getItem("id");
 
       try {
-        axios.get(`http://35.212.196.164/mypage/commentlist/${id}`)
+        axios.get(`http://35.212.196.164:8080/mypage/commentlist/${id}`)
                 .then(res => {
                   const dataArray = res.data;
 
@@ -127,7 +127,7 @@
       const id = localStorage.getItem("id");
 
       try {
-        axios.get(`http://35.212.196.164/mypage/contentlist/${id}`)
+        axios.get(`http://35.212.196.164:8080/mypage/contentlist/${id}`)
                 .then(res => {
 
                   const dataArray = res.data;

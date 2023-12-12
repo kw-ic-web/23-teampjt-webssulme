@@ -214,7 +214,7 @@
 
         try {
             // Fetch the board item from the server
-            const response = await axios.get(`http://35.212.196.164/freeboard/complete/${idx}`);
+            const response = await axios.get(`http://35.212.196.164:8080/freeboard/complete/${idx}`);
 
             console.log(response);
             const selectedItem = response.data;
@@ -232,7 +232,7 @@
 
         async function fetchAndDisplayComments(idx) {
             try {
-                const res = await axios.get(`http://35.212.196.164/freeboard/getcontent/${idx}`);
+                const res = await axios.get(`http://35.212.196.164:8080/freeboard/getcontent/${idx}`);
                 const data = res.data;
 
 
@@ -346,7 +346,7 @@
         console.log(commentObj.date);
 
         try {
-            const response = await axios.post(`http://35.212.196.164/freeboard/insertcontent/${free_board_id}/${user_nickname}/${commentObj.content}`);
+            const response = await axios.post(`http://35.212.196.164:8080/freeboard/insertcontent/${free_board_id}/${user_nickname}/${commentObj.content}`);
 
             console.log(response.data);
 
