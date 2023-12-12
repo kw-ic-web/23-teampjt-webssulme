@@ -11,6 +11,16 @@
   <link rel = 'stylesheet' href = "/css/index.css">
   <link rel = 'stylesheet' href = "/css/main.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C07CT9X6D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-6C07CT9X6D');
+  </script>
+
 </head>
 
 
