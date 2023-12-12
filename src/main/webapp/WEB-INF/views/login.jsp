@@ -13,19 +13,19 @@
 </head>
 <body>
 <div id = 'head' class="header">
-  <img src="/img/Logo.png"style = "margin-right: 1350px;"   alt="로고" width="200px" height="65px" onclick="location.href='main'">
+  <img src="/img/Logo.png"style = "margin-right: 1350px;"   alt="로고" width="200px" height="65px" onclick="location.href='/main'">
 
   <div class="button-container" id="buttonContainer">
     <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
     <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
-    <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-    <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+    <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+    <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
   </div>
 
   <div class="nav__bar">
     <ul class="nav__menu">
-      <li><a href="main" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-      <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+      <li><a href="/main" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+      <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
       <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
       <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
     </ul>
@@ -81,7 +81,7 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'mypage';
+      window.location.href = '/mypage';
     }
   }
 
@@ -91,7 +91,7 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'freeboard';
+      window.location.href = '/freeboard';
     }
   }
 
@@ -132,7 +132,7 @@
       localStorage.removeItem('pwd');
       localStorage.removeItem('is_logined');
       alert("로그아웃 되었습니다.");
-      window.location.href = 'main';
+      window.location.href = '/main';
     }catch (error) {
       console.error('오류 발생:', error);
     }

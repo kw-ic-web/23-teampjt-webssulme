@@ -15,19 +15,19 @@
 
 <body>
 <div id = 'head' class="header">
-    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="100px" onclick="location.href='/'">
     <div class="button-container" id="buttonContainer">
         <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
         <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
-        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
     </div>
 
 
     <div class="nav__bar">
         <ul class="nav__menu">
             <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a href="/freeboard" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a href="/mypage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -80,7 +80,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage';
+            window.location.href = '/mypage';
         }
     }
 
@@ -89,7 +89,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList';
+            window.location.href = '/free_boardList';
         }
     }
 
@@ -120,7 +120,7 @@
     function signup() {
         var pwd = document.querySelector("input[name = 'pwd']").value;
 
-        try { axios.put(`http://35.212.196.164:8080/mypage/profile/${id}/${pwd}`,{ withCredentials: true })
+        try { axios.put(`http://35.212.196.164:8080/mypage/profile/` + id + `/` + pwd,{ withCredentials: true })
             .then(res => {
                 console.log(res)
                 if (res.data) {

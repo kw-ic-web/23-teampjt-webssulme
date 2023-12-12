@@ -21,15 +21,15 @@
     <div class="button-container" id="buttonContainer">
         <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
         <button class="button" id="logoutBtn" style="margin:10px; " onclick="logout()">로그아웃</button>
-        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
     </div>
 
 
     <div class="nav__bar">
         <ul class="nav__menu">
             <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -65,7 +65,7 @@
             <p>알바 고민 상담을 해봐요 !</p>
         </div>
 
-        <input class="button" visibility = "hidden;"  style= "margin-right:40px;" type="button" id="Btn" value="글쓰기" onclick="location.href='freeboardwrite'">
+        <input class="button" visibility = "hidden;"  style= "margin-right:40px;" type="button" id="Btn" value="글쓰기" onclick="location.href='/freeboardwrite'">
     </div>
 
     <!--    <div class="button-wrapper">-->
@@ -75,7 +75,7 @@
         <div class="board_list" id ="boardList" >
             <div>
                 <div class="num"></div>
-                <div class="title"><a href="freeboardview"></a></div>
+                <div class="title"><a href="/freeboardview"></a></div>
                 <div class="writer"></div>
                 <div class="date"></div>
             </div>
@@ -136,7 +136,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage';
+            window.location.href = '/mypage';
         }
     }
 
@@ -145,7 +145,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'freeboard';
+            window.location.href = '/freeboard';
         }
     }
 
@@ -200,7 +200,7 @@
 
                     itemContainer.innerHTML =
                         '<div class="num">' + (i + 1) + '</div>' +
-                        '<div class="title"><a href="freeboardview?idx=' + item.id + '">' + item.title + '</a></div>' +
+                        '<div class="title"><a href="/freeboardview?idx=' + item.id + '">' + item.title + '</a></div>' +
                         '<div class="writer">' + item.user_nickname + '</div>' +
                         '<div class="date">' + formattedDate + '</div>' +
                         '<div class="idx" style="display: none;">' + item.id + '</div>';

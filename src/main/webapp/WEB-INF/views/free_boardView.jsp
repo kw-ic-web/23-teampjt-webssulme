@@ -63,19 +63,19 @@
 
 <body>
 <div id = 'head' class="header">
-    <img src="/static/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
     <div class="button-container" id="buttonContainer">
         <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
         <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
-        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
     </div>
 
 
     <div class="nav__bar">
         <ul class="nav__menu">
             <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -123,7 +123,7 @@
 
 
         <div class="bt_wra">
-            <a href="freeboard" class="on">목록</a>
+            <a href="/freeboard" class="on">목록</a>
             <a id="editLink" href="#" class="on">수정</a>
             <!--button id="btn-delete" class ="btn btn-danger">삭제</button>-->
         </div>
@@ -188,7 +188,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage';
+            window.location.href = '/mypage';
         }
     }
 
@@ -197,12 +197,12 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'freeboard';
+            window.location.href = '/freeboard';
         }
     }
     function formatDateString(dateString) {
         const date = new Date(dateString);
-        return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     }
 
 
@@ -214,7 +214,7 @@
 
         try {
             // Fetch the board item from the server
-            const response = await axios.get(`http://35.212.196.164:8080/freeboard/complete/${idx}`);
+            const response = await axios.get(`http://35.212.196.164:8080/freeboard/complete/` + idx);
 
             console.log(response);
             const selectedItem = response.data;
@@ -232,7 +232,7 @@
 
         async function fetchAndDisplayComments(idx) {
             try {
-                const res = await axios.get(`http://35.212.196.164:8080/freeboard/getcontent/${idx}`);
+                const res = await axios.get(`http://35.212.196.164:8080/freeboard/getcontent/` + idx);
                 const data = res.data;
 
 
@@ -248,7 +248,7 @@
 
                 for (let i = userAndContent.length - 1; i >= 0; i--) {
                     const date = new Date(userAndContent[i].created_at);
-                    const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                    const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     const row = createRow(userAndContent[i].user_nickname, userAndContent[i].content,formattedDate);
                     commentList.appendChild(row);
                 }
@@ -311,7 +311,7 @@
 
         // 수정 페이지 idx,userNickname 연결
         const editLink = document.getElementById('editLink');
-        editLink.href = `freeboardedit?idx=${selectedItem.id}&userNickname=${selectedItem.user_nickname}`;
+        editLink.href = `/freeboardedit?idx=` + selectedItem.id + `&userNickname=` + selectedItem.user_nickname;
 
     }
 
@@ -346,13 +346,13 @@
         console.log(commentObj.date);
 
         try {
-            const response = await axios.post(`http://35.212.196.164:8080/freeboard/insertcontent/${free_board_id}/${user_nickname}/${commentObj.content}`);
+            const response = await axios.post(`http://35.212.196.164:8080/freeboard/insertcontent/` + free_board_id + `/` + user_nickname + `/` + commentObj.content);
 
             console.log(response.data);
 
             if (response.data === true) {
                 const date = new Date(commentObj.date);
-                const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();;
                 const row = createRow(commentObj.userid, commentObj.content,formattedDate);
                 commentList.appendChild(row); // 기존에 commentList.innerHTML = ""; 대신에 appendChild를 사용
                 commentList.insertBefore(row, commentList.firstChild);
@@ -415,7 +415,7 @@
 
 
     function totalRecord(){
-        total.innerHTML = `(${commentList.children.length})`;
+        total.innerHTML = `(` + commentList.children.length + `)`;
     }
 
 

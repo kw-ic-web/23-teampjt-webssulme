@@ -15,19 +15,19 @@
 
 <body>
 <div id = 'head' class="header">
-  <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+  <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="100px" onclick="location.href='/'">
   <div class="button-container" id="buttonContainer">
     <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
     <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
-    <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-    <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+    <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+    <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
   </div>
 
 
   <div class="nav__bar">
     <ul class="nav__menu">
       <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-      <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+      <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
       <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
       <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
     </ul>
@@ -86,7 +86,7 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'mypage';
+      window.location.href = '/mypage';
     }
   }
 
@@ -96,7 +96,7 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'freeboard';
+      window.location.href = '/freeboard';
     }
   }
 
@@ -137,7 +137,7 @@
 
     console.log(id)
     // 아이디 중복 확인 요청 코드 => 서버
-    axios.get(`http://35.212.196.164:8080/join/idCheck/${id}`)
+    axios.get(`http://35.212.196.164:8080/join/idCheck/` + id)
             .then(res => {
               // 중복값이 있으면 true, 없으면 false로 반환해온 값을 받아옴
               if (res.data) {
@@ -177,12 +177,12 @@
     var pwd = document.querySelector("input[name = 'pwd']").value;
 
     try {
-      axios.post(`http://35.212.196.164:8080/join/insert/${id}/${pwd}`,{ withCredentials: true })
+      axios.post(`http://35.212.196.164:8080/join/insert/` + id + `/` + pwd,{ withCredentials: true })
               .then(res => {
                 console.log(res)
                 if (res.data) {
                   alert("회원가입이 완료되었습니다 !");
-                  document.location.href = "login";
+                  document.location.href = "/login";
 
                 }
                 else {

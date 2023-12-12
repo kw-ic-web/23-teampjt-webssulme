@@ -5,84 +5,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>후기 수정</title>
-    <link rel = 'stylesheet' href = "/static/css/header.css">
-    <link rel = 'stylesheet' href = "/static/css/css.css">
-
+    <title>내가 작성한 알바 후기글</title>
+    <link rel = 'stylesheet' href = "/css/header.css">
+    <link rel = 'stylesheet' href = "/css/index.css">
+    <link rel = 'stylesheet' href = "/css/mypost.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
-
 <body>
-<div id = 'head' class="header">
-    <img src="/static/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
 
+<div id = 'head' class="header">
+    <img src="/img/Logo.png"  style = "margin-right: 1350px;"  alt="로고" width="200px" height="100px" onclick="location.href='/'">
 
     <div class="button-container" id="buttonContainer">
         <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
-        <button class="button" id="logoutBtn" style="margin:10px; " onclick="logout()">로그아웃</button>
-        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+        <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
     </div>
 
-
+    <!-- <blank style = "margin-top : 100px;"> -->
     <div class="nav__bar">
         <ul class="nav__menu">
-            <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/main" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+            <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
     </div>
 </div>
-</body>
 
+<div class = "mypost">
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>내가 작성한 알바 후기</strong>
+        </div>
 
+        <div class="board_list_wrap">
+            <div id = 'list' class="board_list">
+                <div class="top">
+                    <div class="title">제목</div>
+                    <div class="date">작성일</div>
+                </div>
 
-<style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-
-    * {
-        margin: 0px;
-        font-family: "Do Hyeon";
-
-    }
-</style>
-<body>
-<div class="board_wrap">
-    <div class="board_title">
-        <strong>알바 후기 게시판(수정)</strong>
-        <p>작성한 후기를 확인해주세요.</p>
-    </div>
-    <div class="board_write_wrap">
-        <div class="board_write">
-            <div class="title">
-                <dl>
-                    <dt>제목</dt>
-                    <dd><input type="text" name = "subject" placeholder="제목 입력"></dd>
-                </dl>
             </div>
-            <div class="info">
-                <dl>
-                    <dt>아이디</dt>
-                    <dd><input type="text" name = "id" placeholder="아이디 입력"></dd>
-                </dl>
+
+
+            <div id = 'bt' class="bt_wrap">
+                <!-- 첫페이지면 해당 버튼이 다음만 보이게 설정해야 함 !!! -->
+                <a href="#"  class="bt prev"> 이전 </a>
+                <a href="#"  class="bt next"> 다음 </a>
             </div>
-            <div class="cont">
-                <textarea name = "content" placeholder="내용 입력"></textarea>
+
+            <h2  style= "text-align : center; margin-right:400px;" type = 'hidden' id='pwConfirm'></h2>
+            <div class="button-wrapper">
+                <input class="button" visibility = "hidden;"  style= "margin-right:400px;" type="button" id="Btn" value="마이페이지로" onclick="location.href='/mypage'">
             </div>
         </div>
-        <div class="bt_wrap">
-            <a href="#" id="editbtn" class="on">수정</a>
-            <a href="storeList">취소</a>
-        </div>
+
     </div>
 </div>
-</body>
-</html>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script>
+<script type="text/javascript" >
+
     // 로그인이 되면
     if (localStorage.getItem('is_logined')) {
         // 로그아웃 버튼, 누구누구님만 보임
@@ -107,61 +92,144 @@
     }
 
 
-
     function my() {
         if (!localStorage.getItem('is_logined')) {
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage';
+            window.location.href = '/mypage';
         }
     }
+
+
+
 
     function mine() {
         if (!localStorage.getItem('is_logined')) {
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'freeboard';
+            window.location.href = '/freeboard';
         }
     }
 
-    const Editbtn = document.getElementById("editbtn");
 
-    Editbtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    // 현재 URL에서 쿼리 문자열을 가져옴
+    const queryParams = new URLSearchParams(window.location.search);
 
-        const subject = document.querySelector('input[name="subject"]').value;
-        const id = document.querySelector('input[name="id"]').value;
-        const content = document.querySelector('textarea[name="content"]').value;
+    // 'data' 매개변수가 존재하는지 확인
+    if (queryParams.has('data')) {
+        // 'data' 매개변수의 값을 가져옴 (문자열 형태)
+        const dataString = queryParams.get('data');
 
-        // Do something with the collected data, e.g., log it
-        console.log("Title:", subject);
-        console.log("Author:", id);
-        console.log("Content:", content);
+        // JSON 형태로 파싱하여 사용
+        const dataArray = JSON.parse(dataString);
+        dataArray.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-        // Check each field individually
-        if (!subject) {
-            alert("수정하실 제목을 입력해주세요!");
-            return;
+        console.log(dataArray)
+        // 이제 dataArray를 사용하여 페이지에 필요한 작업 수행
+        console.log(dataArray)
+        if (dataArray.length > 0) {
+            const itemsPerPage = 5;
+            let currentPage = 1;
+
+            function displayItems(startIndex, endIndex) {
+                const container = document.getElementById('list');
+                container.innerHTML = '<div class="top"><div class="title">후기</div><div class="date">작성일</div></div>';
+
+                for (let i = startIndex; i < endIndex; i++) {
+                    const item = dataArray[i];
+                    console.log(item)
+                    if (!item) {
+                        break;
+                    }
+
+                    const itemContainer = document.createElement('div');
+                    const date = new Date(item.created_at);
+                    const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+
+
+                    itemContainer.innerHTML =
+                        '<div class="title"><a href="/storeView.html?idx=' + item.store_id + '">' + item.content + '</a></div>' +
+                        '<div class="date">' + formattedDate + '</div>' +
+                        '<div class="idx" style="display: none;">' + item.id + '</div>';
+
+                    container.appendChild(itemContainer);
+                }
+            }
+
+            function updatePaginationButtons() {
+                //const prevButton = document.getElementById('prev');
+                // const nextButton = document.getElementById('prev');
+                const prevButton = document.querySelector('.bt.prev');
+                const nextButton = document.querySelector('.bt.next');
+
+                prevButton.style.display = currentPage > 1 ? 'inline-block' : 'none';
+                nextButton.style.display = currentPage < Math.ceil(dataArray.length / itemsPerPage) ? 'inline-block' : 'none';
+            }
+
+            function showPage(pageNumber) {
+                const startIndex = (pageNumber - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+
+                displayItems(startIndex, endIndex);
+                updatePaginationButtons();
+            }
+
+            document.querySelector('.bt.prev').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+
+            document.querySelector('.bt.next').addEventListener('click', () => {
+                const totalPages = Math.ceil(dataArray.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+
+// Initial display of the first page
+            showPage(currentPage);
         }
 
-        if (!id) {
-            alert("수정하실 아이디를 입력해주세요 !");
-            return;
+        else if (dataArray.length === 0) {
+            // 'data' 매개변수가 없는 경우
+            document.getElementById("list").style.display = "none";
+            document.getElementById("bt").style.display = "none";
+            const pwc = document.getElementById('pwConfirm');
+            pwc.textContent = '내가 쓴 알바 후기 글이 없습니다.';
+            pwc.style.color = 'green';
+        }}
+
+
+    function show() {
+
+        const titleElement = event.currentTarget;
+        console.log(titleElement)
+        const numElement = titleElement.parentElement.querySelector('num');
+
+        console.log(numElement);
+
+    }
+
+    function logout(){
+        try {
+            localStorage.removeItem('id');
+            localStorage.removeItem('pwd');
+            localStorage.removeItem('is_logined');
+            alert("로그아웃 되었습니다.");
+            window.location.href = '/';
+        }catch (error) {
+            console.error('오류 발생:', error);
         }
-
-        if (!content) {
-            alert("수정하실 내용을 입력해주세요 !");
-            return;
-        }
+    }
 
 
-        // Redirect to view.html after collecting data
-        window.location.href = "storeList";
-    });
 
 
 </script>
-
-
+</body>
+</html>

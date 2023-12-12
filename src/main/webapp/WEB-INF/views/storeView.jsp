@@ -165,7 +165,7 @@
 </style>
 <body>
 <div id="head" class="header">
-    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="100px" onclick="location.href='/'">
 
 
     <div class="button-container" id="buttonContainer">
@@ -279,7 +279,8 @@
 
     function formatDateString(dateString) {
         const date = new Date(dateString);
-        return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     }
 
 
@@ -290,7 +291,7 @@
 
         console.log(idx)
         try {
-            const response = await axios.get(`http://35.212.196.164/store/${idx}`);
+            const response = await axios.get(`http://35.212.196.164/store/` + idx);
 
 
             const selectedItem = response.data;
@@ -308,7 +309,7 @@
 
         async function fetchAndDisplayComments(idx) {   // 여기에 stored_id틀 넣어주면 된다
             try {
-                const res = await axios.get(`http://35.212.196.164/store/comment/${idx}`);
+                const res = await axios.get(`http://35.212.196.164/store/comment/` + idx);
                 const data = res.data;
 
 
@@ -323,7 +324,7 @@
 
                 for (let i = userAndContent.length - 1; i >= 0; i--) {
                     const date = new Date(userAndContent[i].created_at);
-                    const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                    const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     const row = createRow(userAndContent[i].user_nickname, userAndContent[i].content,formattedDate);
                     ReviewList.appendChild(row);
                 }
@@ -389,13 +390,13 @@
         console.log(commentObj.date);
 
         try {
-            const response = await axios.post(`http://35.212.196.164/store/comment/${user_nickname}/${store_id}/${commentObj.content}`);  // 여기에 1이 아니라 store_id가 들어가면됌.
+            const response = await axios.post(`http://35.212.196.164/store/comment/` + user_nickname + `/` + store_id + `/` + commentObj.content);  // 여기에 1이 아니라 store_id가 들어가면됌.
 
             console.log(response.data);
 
             if (response.data === true) {
                 const date = new Date(commentObj.date);
-                const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                 const row = createRow(commentObj.userid, commentObj.content,formattedDate);
                 ReviewList.appendChild(row); // 기존에 commentList.innerHTML = ""; 대신에 appendChild를 사용
                 ReviewList.insertBefore(row,  ReviewList.firstChild);
@@ -459,7 +460,7 @@
     }
 
     function totalRecord(){
-        total.innerHTML = `(${ReviewList.children.length})`;
+        total.innerHTML = `(` + ReviewList.children.length + `)`;
     }
 
     ReviewBtn.addEventListener("submit",ReviewbtnHandler);

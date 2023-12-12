@@ -6,21 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내가 작성한 자유게시글</title>
-    <link rel = 'stylesheet' href = "/static/css/header.css">
-    <link rel = 'stylesheet' href = "/static/css/index.css">
-    <link rel = 'stylesheet' href = "/static/css/myfreepost.css">
+    <link rel = 'stylesheet' href = "/css/header.css">
+    <link rel = 'stylesheet' href = "/css/index.css">
+    <link rel = 'stylesheet' href = "/css/myfreepost.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
 <div id = 'head' class="header">
-    <img src="/static/img/Logo.png"  style = "margin-right: 1350px;"  alt="로고" width="200px" height="65px" onclick="location.href='/'">
+    <img src="/img/Logo.png"  style = "margin-right: 1350px;"  alt="로고" width="200px" height="65px" onclick="location.href='/'">
 
     <div class="button-container" id="buttonContainer">
         <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
         <button class="button" id="logoutBtn" style="margin: 7px; " onclick="logout()">로그아웃</button>
-        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
     </div>
 
     <div class="nav__bar">
@@ -56,7 +56,7 @@
 
             <h2  style= "text-align : center; margin-right:400px;" type = 'hidden' id='pwConfirm'></h2>
             <div class="button-wrapper">
-                <input class="button" visibility = "hidden;"  style= "margin-right:400px;" type="button" id="Btn" value="마이페이지로" onclick="location.href='mypage'">
+                <input class="button" visibility = "hidden;"  style= "margin-right:400px;" type="button" id="Btn" value="마이페이지로" onclick="location.href='/mypage'">
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage';
+            window.location.href = '/mypage';
         }
     }
 
@@ -97,7 +97,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'freeboard';
+            window.location.href = '/freeboard';
         }
     }
 
@@ -133,13 +133,12 @@
 
                     const itemContainer = document.createElement('div');
                     const date = new Date(item.created_at);
-                    const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                    const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 
-                    itemContainer.innerHTML = `
-            <div class="title"><a href="free_boardView?idx=${item.id}">${item.title}</a></div>
-            <div class="date">${formattedDate}</div>
+                    itemContainer.innerHTML =
+                        '<div class="title"><a href="free_boardView?idx=' + item.id + '">' + item.title + '</a></div>' +
+                        '<div class="date">' + formattedDate + '</div>';
 
-        `;
 
                     container.appendChild(itemContainer);
                 }

@@ -85,21 +85,21 @@
 
 <body>
 <div id = 'head' class="header">
-    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="100px" onclick="location.href='/'">
 
 
     <div class="button-container" id="buttonContainer">
         <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
         <button class="button" id="logoutBtn" style="margin:10px; " onclick="logout()">로그아웃</button>
-        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
-        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
+        <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='/login'">
+        <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='/join'">
     </div>
 
 
     <div class="nav__bar">
         <ul class="nav__menu">
             <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
-            <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
+            <li><a href="/storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
             <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
             <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
@@ -173,7 +173,7 @@
         // 카테고리가 존재할 경우에만 요청을 보냄
         if (category) {
             // 서버로의 요청을 보내는 부분
-            axios.get(`http://35.212.196.164:8080/category/${category}`)
+            axios.get(`http://35.212.196.164:8080/category/` + category)
                 .then(function (response) {
                     // 요청이 성공한 경우 실행되는 부분
                     const data = response.data;
@@ -182,7 +182,7 @@
                     if (data.length > 0) {
                         const itemsPerPage = 10;
                         let currentPage = 1;
-                        titleContent.textContent = `${category} 목록`;
+                        titleContent.textContent = category + `목록`;
                         // 선택된 카테고리에 대해서만 스타일을 변경
                         const menuItems = document.querySelectorAll('.storemenu a, .storemenu2 a');
                         menuItems.forEach(item => {
@@ -207,7 +207,7 @@
                                 itemContainer.classList.add('item');
                                 itemContainer.innerHTML =
                                     '<div class="title" style="margin-left: 100px; margin-right: -100px;">' +
-                                    '<a href="storeView?idx=' + store.id + '">' + store.name + '</a>' +
+                                    '<a href="/storeView?idx=' + store.id + '">' + store.name + '</a>' +
                                     '</div>' +
                                     '<div class="location">' + store.location + '</div>';
 
@@ -288,7 +288,7 @@
                                 itemContainer.classList.add('item');
                                 itemContainer.innerHTML =
                                     '<div class="title" style="margin-left: 100px; margin-right: -100px;">' +
-                                    '<a href="storeView?idx=' + store.id + '">' + store.name + '</a>' +
+                                    '<a href="/storeView?idx=' + store.id + '">' + store.name + '</a>' +
                                     '</div>' +
                                     '<div class="location">' + store.location + '</div>';
 
@@ -339,7 +339,8 @@
 
 
     // ------------------ 상단 버튼 각각 누를때 실행되는 코드
-    function loadCategory(category,element) {
+    function loadCategory(category, element) {
+        console.log(category);
         const allCategoryElements = document.querySelectorAll('.storemenu a, .storemenu2 a');
         allCategoryElements.forEach(item => {
             item.classList.remove('selected');
@@ -351,16 +352,18 @@
         element.style.fontSize = '1.2em'; // 클릭한 카테고리의 폰트 크기 키우기
         element.style.fontWeight = 'bold';
         const titleContent = document.querySelector('.title-content strong');
-        const url = `http://35.212.196.164:8080/category/${category}`;
+        console.log(category);
 
-        fetch(url)
+        const url = `http://35.212.196.164:8080/category/` + category;
+        console.log(url);
+        fetch(`http://35.212.196.164:8080/category/`+category)
             .then(response => response.json()) // JSON 형태로 변환
             .then(data => {
                 console.log(data)
                 if (data.length > 0) {
                     const itemsPerPage = 10;
                     let currentPage = 1;
-                    titleContent.textContent = `${category} 목록`;
+                    titleContent.textContent = category + `목록`;
                     function displayItems(startIndex, endIndex) {
                         const container = document.getElementById('list');
                         container.innerHTML = '<div class="top"><div class="title" style = "margin-left  : 150px;">가게명</div><div class="location" style = "margin-left  : 500px; white-space: nowrap;">위치</div></div>';
@@ -376,7 +379,7 @@
                             itemContainer.classList.add('item');
                             itemContainer.innerHTML =
                                 '<div class="title" style="margin-left: 100px; margin-right: -100px;">' +
-                                '<a href="storeView?idx=' + store.id + '">' + store.name + '</a>' +
+                                '<a href="/storeView?idx=' + store.id + '">' + store.name + '</a>' +
                                 '</div>' +
                                 '<div class="location">' + store.location + '</div>';
 
@@ -460,7 +463,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'mypage';
+            window.location.href = '/mypage';
         }
     }
 
@@ -469,7 +472,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'freeboard';
+            window.location.href = '/freeboard';
         }
     }
 
