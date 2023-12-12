@@ -102,7 +102,7 @@
     const loginButton = document.getElementById("btn");
     //  로그인 성공시 true / 실패시 false 반환
     try {
-      axios.post(`http://35.212.196.164:8080/login/check/${id}/${pwd}`,{ withCredentials: true })
+      axios.post(`http://35.212.196.164:8080/login/check/`+id+'/'+pwd,{ withCredentials: true })
               .then(res => {
                 if (res.data[0]) {
                   //  const is_logined = true;
@@ -112,7 +112,7 @@
                   localStorage.setItem("id", userId);
                   localStorage.setItem("pwd", userpw);
                   localStorage.setItem('is_logined', true);
-                  alert(`${id} 님 환영합니다 !`);
+                  alert(id+` 님 환영합니다 !`);
                   document.location.href = "/";
                 }
                 else { //반환값이 하나도 없을때
