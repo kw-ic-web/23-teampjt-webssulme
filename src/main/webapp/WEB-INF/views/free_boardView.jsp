@@ -125,7 +125,7 @@
         <div class="bt_wra">
             <a href="/freeboard" class="on">목록</a>
             <a id="editLink" href="#" class="on">수정</a>
-            <!--button id="btn-delete" class ="btn btn-danger">삭제</button>-->
+<%--            <a id="btn-delete" href="#" class ="on">삭제</a>--%>
         </div>
 
 

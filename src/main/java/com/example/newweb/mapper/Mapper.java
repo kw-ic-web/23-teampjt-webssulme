@@ -45,6 +45,9 @@ public interface Mapper {
     // 자유게시판에 등록된 글 수정
     public boolean putFreeBoardContent(int id, String title, String content, Timestamp updated_at);
 
+    // 자유게시판에 등록된 글 삭제
+    public boolean deleteFreeBoardContent(int id);
+
     // 프로필 가져오기
     public userModel getMypageProfile(String nickname);
 

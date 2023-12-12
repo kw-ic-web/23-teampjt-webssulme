@@ -71,6 +71,11 @@
         where id = #{id};
     </update>
 
+    <delete id="deleteFreeBoardContent">
+        delete from free_board
+        where id = #{id};
+    </delete>
+
     <select id="getMypageProfile" resultType="com.example.newweb.model.userModel">
         select *
         from user

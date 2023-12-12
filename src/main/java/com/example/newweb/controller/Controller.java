@@ -336,6 +336,26 @@ public class Controller {
         }
     }
 
+    // 작성한 자유게시판 글을 삭제(edit.html)
+    @ResponseBody
+    @DeleteMapping("/freeboard/deletecontent/{id}")
+    public boolean deleteFreeBoardContent(@PathVariable("id") int id) throws Exception{
+        try {
+            boolean result = service.deleteFreeBoardContent(id);
+            if (result){
+                System.out.println("글을 삭제하였습니다.");
+                return true;
+            } else {
+                System.out.println("글을 삭제하는데 실패하였습니다.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("글을 삭제하는데 실패하였습니다.");
+            System.out.println(e);
+            return false;
+        }
+    }
+
     // 자유게시판 특정 글의 댓글 가져오기
     @ResponseBody
     @GetMapping("/freeboard/getcontent/{free_board_id}")

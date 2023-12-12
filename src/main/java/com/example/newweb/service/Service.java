@@ -79,6 +79,10 @@ public class Service {
         return mapper.putFreeBoardContent(id, title, content, updated_at);
     }
 
+    public boolean deleteFreeBoardContent(int id) throws Exception{
+        return mapper.deleteFreeBoardContent(id);
+    }
+
     // 프로필 가져오기
     public userModel getMypageProfile(String nickname) throws Exception{
         return mapper.getMypageProfile(nickname);
