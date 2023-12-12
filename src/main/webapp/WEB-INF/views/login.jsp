@@ -14,13 +14,13 @@
 </head>
 <body>
 <div id = 'head' class="header">
-  <img src="/img/Logo.png"style = "margin-right: 1350px;"   alt="로고" width="200px" height="65px" onclick="location.href='main.html'">
+  <img src="/img/Logo.png"style = "margin-right: 1350px;"   alt="로고" width="200px" height="65px" onclick="location.href='/'">
 
   <div class="button-container" id="buttonContainer">
     <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
     <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
-    <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login.html'">
-    <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join.html'">
+    <input class="button" type="button" id="loginBtn" value="로그인" style="margin: 7px; margin-right: 15px;" onclick="location.href='login'">
+    <input class="button" type="button" id="joinBtn" value="회원가입" style="margin: 7px; margin-right: 15px;" onclick="location.href='join'">
   </div>
 
   <div class="nav__bar">

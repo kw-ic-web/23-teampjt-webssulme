@@ -15,7 +15,7 @@
 
 <body>
 <div id = 'head' class="header">
-  <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='main'">
+  <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
   <div class="button-container" id="buttonContainer">
     <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
     <button class="button" id="logoutBtn" style="margin: 7px;" onclick="logout()">로그아웃</button>
