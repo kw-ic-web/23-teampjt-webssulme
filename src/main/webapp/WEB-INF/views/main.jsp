@@ -218,7 +218,7 @@
     console.log('Selected category:', category);
     const queryParams = new URLSearchParams();
     queryParams.append('category', category);
-    window.location.href = `storeList?${queryParams.toString()}`;
+    window.location.href = "storeList?" + queryParams.toString();
   }
 
 

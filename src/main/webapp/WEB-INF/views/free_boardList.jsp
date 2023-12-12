@@ -15,7 +15,7 @@
 
 <body>
 <div id = 'head' class="header">
-    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="65px" onclick="location.href='/'">
+    <img src="/img/Logo.png" style = "margin-right: 1350px;" alt="로고" width="200px" height="100px" onclick="location.href='/'">
 
 
     <div class="button-container" id="buttonContainer">
@@ -196,15 +196,14 @@
 
                     const itemContainer = document.createElement('div');
                     const date = new Date(item.created_at);
-                    const formattedDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+                    const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate());
 
-                    itemContainer.innerHTML = `
-           <div class="num">${i + 1}</div>
-            <div class="title"><a href="freeboardview?idx=${item.id}">${item.title}</a></div>
-            <div class="writer">${item.user_nickname}</div>
-            <div class="date">${formattedDate}</div>
-            <div class="idx" style="display: none;">${item.id}</div>
-        `;
+                    itemContainer.innerHTML =
+                        '<div class="num">' + (i + 1) + '</div>' +
+                        '<div class="title"><a href="freeboardview?idx=' + item.id + '">' + item.title + '</a></div>' +
+                        '<div class="writer">' + item.user_nickname + '</div>' +
+                        '<div class="date">' + formattedDate + '</div>' +
+                        '<div class="idx" style="display: none;">' + item.id + '</div>';
                     boardListContainer.appendChild(itemContainer);
 
                 }

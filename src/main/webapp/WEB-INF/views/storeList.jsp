@@ -144,7 +144,7 @@
 
         <div id = 'bt' class="bt_wrap">
 
-            <a href="#"  class="bt prev"> <이전 </a>
+            <a href="#"  class="bt prev"> 이전< </a>
             <a href="#"  class="bt next"> >다음 </a>
         </div>
 
@@ -205,12 +205,11 @@
 
                                 const itemContainer = document.createElement('div');
                                 itemContainer.classList.add('item');
-                                itemContainer.innerHTML = `
-                                <div class="title" style="margin-left: 100px; margin-right: -100px;">
-                                      <a href="storeView?idx=${store.id}">${store.name}</a>
-                                </div>
-                                <div class="location">${store.location}</div>
-                            `;
+                                itemContainer.innerHTML =
+                                    '<div class="title" style="margin-left: 100px; margin-right: -100px;">' +
+                                    '<a href="storeView?idx=' + store.id + '">' + store.name + '</a>' +
+                                    '</div>' +
+                                    '<div class="location">' + store.location + '</div>';
 
                                 container.appendChild(itemContainer);
                             }
@@ -287,12 +286,11 @@
 
                                 const itemContainer = document.createElement('div');
                                 itemContainer.classList.add('item');
-                                itemContainer.innerHTML = `
-                                <div class="title" style="margin-left: 100px; margin-right: -100px;">
-                                    <a href="storeView?idx=${store.id}">${store.name}</a>
-                                </div>
-                                <div class="location">${store.location}</div>
-                            `;
+                                itemContainer.innerHTML =
+                                    '<div class="title" style="margin-left: 100px; margin-right: -100px;">' +
+                                    '<a href="storeView?idx=' + store.id + '">' + store.name + '</a>' +
+                                    '</div>' +
+                                    '<div class="location">' + store.location + '</div>';
 
                                 container.appendChild(itemContainer);
                             }
@@ -369,19 +367,18 @@
 
                         for (let i = startIndex; i < endIndex; i++) {
                             const store = data[i];
-
+                            console.log(store);
                             if (!store) {
                                 break;
                             }
 
                             const itemContainer = document.createElement('div');
                             itemContainer.classList.add('item');
-                            itemContainer.innerHTML = `
-                <div class="title" style="margin-left: 100px; margin-right: -100px;">
-                    <a href="storeView?idx=${store.id}">${store.name}</a>
-                </div>
-                <div class="location"">${store.location}</div>
-            `;
+                            itemContainer.innerHTML =
+                                '<div class="title" style="margin-left: 100px; margin-right: -100px;">' +
+                                '<a href="storeView?idx=' + store.id + '">' + store.name + '</a>' +
+                                '</div>' +
+                                '<div class="location">' + store.location + '</div>';
 
                             container.appendChild(itemContainer);
                         }
