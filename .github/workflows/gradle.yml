@@ -56,6 +56,7 @@ jobs:
       run: docker push pswlove38/github-actions-demo
 
     # 6. GCP에 SSH로 접속
+    # sudo docker pull pswlove38/change-nginx
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
@@ -66,6 +67,6 @@ jobs:
         script: |
           sudo docker rm -f $(docker ps -qa)
           sudo docker pull pswlove38/github-actions-demo
-          sudo docker pull pswlove38/change-nginx
+          sudo docker pull pswlove38/change-nginx2
           docker-compose up -d
           docker image prune -f

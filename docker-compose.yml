@@ -10,9 +10,10 @@ services:
       - 8080:8080
 
 # 80포트로 접근시, 8080으로 reverse proxy 설정한 nginx
+# image: pswlove38/change-nginx
   nginx:
     container_name: nginx
-    image: pswlove38/change-nginx
+    image: pswlove38/change-nginx2
     ports:
       - 80:80
     depends_on:
