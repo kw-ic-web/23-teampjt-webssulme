@@ -40,7 +40,7 @@
     <div class="myprofile">
       <!-- <img src="../img/person.png"  class = "im" alt="프로필" width="50px" height="30px"> -->
       <p class = 'h2' id = 'name1'></p>
-      <button class='btn' onclick="location.href='editmyprofile'">프로필 편집</button>
+      <button class='btn' onclick="location.href='mypage/profile'">프로필 편집</button>
 
       <h3 class = 'h2'>나의 활동</h3>
       <button class='btn' onclick="mypost();">내가 작성한 알바 후기</button>
@@ -106,7 +106,7 @@
       const id = localStorage.getItem("id");
 
       try {
-        axios.get(`http://35.212.196.164:8080/mypage/commentlist/${id}`)
+        axios.get(`http://35.212.196.164:8080/mypage/commentlist/`+id)
                 .then(res => {
                   const dataArray = res.data;
 
@@ -127,7 +127,7 @@
       const id = localStorage.getItem("id");
 
       try {
-        axios.get(`http://35.212.196.164:8080/mypage/contentlist/${id}`)
+        axios.get(`http://35.212.196.164:8080/mypage/contentlist/`+id)
                 .then(res => {
 
                   const dataArray = res.data;
