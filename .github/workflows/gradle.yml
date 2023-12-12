@@ -67,6 +67,6 @@ jobs:
         script: |
           sudo docker rm -f $(docker ps -qa)
           sudo docker pull pswlove38/github-actions-demo
-          sudo docker pull pswlove38/change-nginx2
+          sudo docker pull pswlove38/change-nginx
           docker-compose up -d
           docker image prune -f

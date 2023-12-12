@@ -13,7 +13,7 @@ services:
 # image: pswlove38/change-nginx
   nginx:
     container_name: nginx
-    image: pswlove38/change-nginx2
+    image: pswlove38/change-nginx
     ports:
       - 80:80
     depends_on:
