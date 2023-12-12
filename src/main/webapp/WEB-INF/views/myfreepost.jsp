@@ -136,7 +136,7 @@
                     const formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 
                     itemContainer.innerHTML =
-                        '<div class="title"><a href="freeboardview?idx=' + item.id + '">' + item.title + '</a></div>' +
+                        '<div class="title"><a href="/freeboardview?idx=' + item.id + '">' + item.title + '</a></div>' +
                         '<div class="date">' + formattedDate + '</div>';
 
 
