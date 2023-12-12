@@ -65,7 +65,7 @@
             <p>알바 고민 상담을 해봐요 !</p>
         </div>
 
-        <input class="button" visibility = "hidden;"  style= "margin-right:40px;" type="button" id="Btn" value="글쓰기" onclick="location.href='free_boardWrite'">
+        <input class="button" visibility = "hidden;"  style= "margin-right:40px;" type="button" id="Btn" value="글쓰기" onclick="location.href='freeboardwrite'">
     </div>
 
     <!--    <div class="button-wrapper">-->
@@ -75,7 +75,7 @@
         <div class="board_list" id ="boardList" >
             <div>
                 <div class="num"></div>
-                <div class="title"><a href="free_boardView"></a></div>
+                <div class="title"><a href="freeboardview"></a></div>
                 <div class="writer"></div>
                 <div class="date"></div>
             </div>
@@ -145,7 +145,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList';
+            window.location.href = 'freeboard';
         }
     }
 
@@ -200,7 +200,7 @@
 
                     itemContainer.innerHTML = `
            <div class="num">${i + 1}</div>
-            <div class="title"><a href="free_boardView?idx=${item.id}">${item.title}</a></div>
+            <div class="title"><a href="freeboardview?idx=${item.id}">${item.title}</a></div>
             <div class="writer">${item.user_nickname}</div>
             <div class="date">${formattedDate}</div>
             <div class="idx" style="display: none;">${item.id}</div>

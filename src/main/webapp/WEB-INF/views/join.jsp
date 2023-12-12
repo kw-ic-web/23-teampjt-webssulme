@@ -96,7 +96,7 @@
       alert('로그인 후 이용가능합니다!')
     }
     else{
-      window.location.href = 'free_boardList';
+      window.location.href = 'freeboard';
     }
   }
 

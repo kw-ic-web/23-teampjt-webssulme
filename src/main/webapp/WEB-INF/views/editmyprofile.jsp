@@ -28,8 +28,8 @@
         <ul class="nav__menu">
             <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
             <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
-            <li><a href="../freeboardpage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
-            <li><a href="../mypage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
+            <li><a href="/freeboard" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
+            <li><a href="/mypage" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
         </ul>
     </div>
 </div>

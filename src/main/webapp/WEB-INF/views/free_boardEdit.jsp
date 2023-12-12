@@ -58,7 +58,7 @@
         </div>
         <div class="bt_wrap">
             <a id="editbtn" class="on">수정</a>
-            <a href="free_boardList">취소</a>
+            <a href="freeboard">취소</a>
         </div>
     </div>
 </div>
@@ -112,7 +112,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList';
+            window.location.href = 'freeboard';
         }
     }
 
@@ -163,7 +163,7 @@
                 if (response.data === true) {
                     console.log("글 수정 성공!");
                     // Redirect or perform other actions on success
-                    window.location.href = 'free_boardList';
+                    window.location.href = 'freeboard';
                     alert('수정이 완료되었습니다.')
                 } else {
                     console.log('글 수정 실패!');

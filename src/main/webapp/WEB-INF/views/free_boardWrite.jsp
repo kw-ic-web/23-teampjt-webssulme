@@ -103,7 +103,7 @@
 
                 <div  id = 'btn' class="bt_wra">
                     <a  href ="#" id="registrationBtn" class="on">등록</a>
-                    <a  href="free_boardList"  class="on">취소</a>
+                    <a  href="freeboard"  class="on">취소</a>
                     <!--button id="btn-delete" class ="btn btn-danger">삭제</button>-->
                 </div>
             </form>
@@ -159,7 +159,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList';
+            window.location.href = 'freeboard';
         }
     }
 
@@ -188,7 +188,7 @@
                 // 성공 시 리다이렉트하거나 기타 작업 수행 가능
 
                 // 성공 시 리다이렉트하거나 기타 작업 수행 가능
-                window.location.href = 'free_boardList';
+                window.location.href = 'freeboard';
 
             } else {
                 console.log('새글 등록 실패!');

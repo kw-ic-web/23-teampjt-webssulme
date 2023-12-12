@@ -123,7 +123,7 @@
 
 
         <div class="bt_wra">
-            <a href="free_boardList" class="on">목록</a>
+            <a href="freeboard" class="on">목록</a>
             <a id="editLink" href="#" class="on">수정</a>
             <!--button id="btn-delete" class ="btn btn-danger">삭제</button>-->
         </div>
@@ -197,7 +197,7 @@
             alert('로그인 후 이용가능합니다!')
         }
         else{
-            window.location.href = 'free_boardList';
+            window.location.href = 'freeboard';
         }
     }
     function formatDateString(dateString) {
@@ -311,7 +311,7 @@
 
         // 수정 페이지 idx,userNickname 연결
         const editLink = document.getElementById('editLink');
-        editLink.href = `free_boardEdit?idx=${selectedItem.id}&userNickname=${selectedItem.user_nickname}`;
+        editLink.href = `freeboardedit?idx=${selectedItem.id}&userNickname=${selectedItem.user_nickname}`;
 
     }
 
