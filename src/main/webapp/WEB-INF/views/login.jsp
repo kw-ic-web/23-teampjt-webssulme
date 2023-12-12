@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id = 'head' class="header">
-  <img src="/img/Logo.png"style = "margin-right: 1350px;"   alt="로고" width="200px" height="65px" onclick="location.href='/'">
+  <img src="/img/Logo.png"style = "margin-right: 1350px;"   alt="로고" width="200px" height="65px" onclick="location.href='main'">
 
   <div class="button-container" id="buttonContainer">
     <p class = 'nickname' id = 'name' style = "margin-right: 40px;"></p>
@@ -24,7 +24,7 @@
 
   <div class="nav__bar">
     <ul class="nav__menu">
-      <li><a href="/" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
+      <li><a href="main" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 홈 </a></li>
       <li><a href="storeList" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 후기 목록 </a></li>
       <li><a id = 'freebtn' onclick= "mine()" style="margin-top: 15px; margin-left: 10px;" class="white_font"> 자유게시판 </a></li>
       <li><a id = 'mypagebtn' onclick= "my()" style="margin-top: 10px; margin-left: 10px;" class="white_font"> 마이페이지 </a></li>
@@ -97,37 +97,30 @@
 
 
   function login() {
-    var id = document.querySelector("input[name='id']").value;
-    var pwd = document.querySelector("input[name='pwd']").value;
-
+    var id =document.querySelector("input[name = 'id']").value;
+    var pwd = document.querySelector("input[name = 'pwd']").value;
+    const loginButton = document.getElementById("btn");
+    //  로그인 성공시 true / 실패시 false 반환
     try {
-      axios.post(`http://35.212.196.164:8080/login/check/${id}/${pwd}`, null, {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
+      axios.post(`http://35.212.196.164:8080/login/check/${id}/${pwd}`,{ withCredentials: true })
               .then(res => {
                 if (res.data[0]) {
-                  const userId = res.data[0].nickname;
-                  const userpw = res.data[0].pw;
-
+                  //  const is_logined = true;
+                  // 서버로부터 받아온 값 (가정)
+                  const userId  =  res.data[0].nickname;
+                  const userpw = res.data[0].pw ;
                   localStorage.setItem("id", userId);
                   localStorage.setItem("pwd", userpw);
-                  localStorage.setItem('is_login', true);
-
-                  alert(`${id}이(가) 존재하지 않습니다!`);
-
+                  localStorage.setItem('is_logined', true);
+                  alert(`${id} 님 환영합니다 !`);
                   document.location.href = "/";
-                } else {
-                  alert("당신의 친구가 당신을 기다리고 있습니다. 당신도 기다리고 있어요!");
+                }
+                else { //반환값이 하나도 없을때
+                  alert("로그인 정보가 일치하지 않습니다. 다시 입력해주세요 !");
                 }
               })
-              .catch(error => {
-                console.error('에러:', error);
-              });
     } catch (error) {
-      console.error('에러:', error);
+      console.error('오류 발생:', error);
     }
   }
 
@@ -139,7 +132,7 @@
       localStorage.removeItem('pwd');
       localStorage.removeItem('is_logined');
       alert("로그아웃 되었습니다.");
-      window.location.href = '/';
+      window.location.href = 'main';
     }catch (error) {
       console.error('오류 발생:', error);
     }
