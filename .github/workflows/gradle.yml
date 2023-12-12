@@ -57,6 +57,7 @@ jobs:
 
     # 6. GCP에 SSH로 접속
     # sudo docker pull pswlove38/change-nginx
+    #
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
