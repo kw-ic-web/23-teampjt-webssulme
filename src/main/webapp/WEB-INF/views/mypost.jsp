@@ -150,7 +150,7 @@
 
 
                     itemContainer.innerHTML =
-                        '<div class="title"><a href="/storeView.html?idx=' + item.store_id + '">' + item.content + '</a></div>' +
+                        '<div class="title"><a href="/storeView?idx=' + item.store_id + '">' + item.content + '</a></div>' +
                         '<div class="date">' + formattedDate + '</div>' +
                         '<div class="idx" style="display: none;">' + item.id + '</div>';
 
