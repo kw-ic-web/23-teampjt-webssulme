@@ -102,20 +102,20 @@
         justify-content : bottom;
         align-items: bottom;
         position:sticky;
-        top:30;
+        top:0;
     
     }
     
     li {
         list-style: none;
         position:sticky;
-        top:30;
+        top:0;
     }
     
     .white_font {
         color:  #fff;
         position:sticky;
-        top:30;
+        top:0;
     }
 
     .cate {
